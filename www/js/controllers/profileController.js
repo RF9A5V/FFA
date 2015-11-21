@@ -128,37 +128,54 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup', '$ionicMo
     $scope.wishlist.push();
   };
 
-  $ionicModal.fromTemplateUrl('my-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
+  $ionicModal.fromTemplateUrl('templates/modals/create_listing.html', {
+    scope: $scope
+  }).then(function (modal) {
+    $scope.create_listing_modal = modal;
   });
-  $scope.openModal = function() {
+
+  $scope.openModal = function () {
     if($scope.showWishlist)
     {
       $scope.toggleShowAdd();
     }
     else
     {
-      $scope.modal.show();
+      $scope.create_listing_modal.show();
     }
   };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
+  $scope.closeModal = function () {
+    $scope.create_listing_modal.hide();
   };
   //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
+  $scope.$on('$destroy', function () {
+    $scope.create_listing_modal.remove();
   });
   // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
+  $scope.$on('modal.hidden', function () {
     // Execute action
   });
   // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
+  $scope.$on('modal.removed', function () {
     // Execute action
   });
+
+  $ionicModal.fromTemplateUrl('templates/modals/modify_listing.html', {
+    scope: $scope
+  }).then(function (modal) {
+    $scope.modify_listing_modal = modal;
+  });
+
+  $scope.modifyItem = function (data){
+    $scope.selectedItem = data;
+    $scope.modify_listing_modal.show();
+  };
+
+  $scope.updateItem = function (data){
+    // TODO: save the updated object
+    $scope.modify_listing_modal.hide();
+  }
+
   //$scope.shouldShowDelete = false;
   //$scope.shouldShowReorder = false;
   //$scope.listCanSwipe = true

@@ -1,1 +1,1 @@
-ls node_modules/ionic/bin
+ls node_modules/ionic

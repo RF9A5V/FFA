@@ -1,3 +1,12 @@
-.listing #listing {
+.listing #item-img {
+  max-width: 100%;
+}
 
+.listing .no-pad {
+  padding: 0px 0px 0px 0px;
+}
+
+.listing #create-button-title {
+  text-align: center;
+  color: white;
 }

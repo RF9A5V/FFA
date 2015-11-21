@@ -6,7 +6,65 @@
   </ion-header-bar>
 
   <ion-content>
-    Im in listing
+    <div class="list card">
+      <div class="item">
+        <img id="item-img" src="http://www.portableone.com/images/macbook-pro-for-college.jpg">
+      </div>
+
+      <form class="item no-pad">
+        <label class="item item-input">
+          <div class="input-label">
+            Title:
+          </div>
+          <input type="text" ng-model="item.title">
+        </label>
+
+        <label class="item item-input">
+          <div class="input-label">
+            Description:
+          </div>
+          <input type="text" ng-model="item.description">
+        </label>
+
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Category:
+          </div>
+
+          <select ng-model="item.category">
+            <option value="" ng-selected>Choose a Category</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Food">Food</option>
+            <option value="Electronic">Electronic</option>
+          </select>
+        </label>
+
+        <label class="item item-input">
+          <div class="input-label">
+            Tag:
+          </div>
+          <input type="text" ng-model="item.tags">
+        </label>
+
+        <label class="item item-input">
+          <div class="input-label">
+            Contact:
+          </div>
+          <input type="text" ng-model="item.contact">
+        </label>
+
+        <label class="item item-input">
+          <div class="input-label">
+            Location:
+          </div>
+          <input type="text" ng-model="item.location">
+        </label>
+      </form>
+    </div>
   </ion-content>
+
+  <ion-footer-bar class="bar bar-footer bar-balanced">
+      <div class="title" id="create-button-title">Create</div>
+  </ion-footer-bar>
 
 </ion-view>

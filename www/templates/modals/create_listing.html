@@ -1,11 +1,11 @@
 <ion-modal-view title="Post Listing" class="listing">
-  <ion-nav-bar class="bar-positive">
+  <ion-nav-bar class="bar-dark">
     <ion-nav-buttons side="left">
       <a class="button button-clear icon ion-close" ng-click="create_listing_modal.hide()"></a>
     </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content>
+  <ion-content class="has-header">
     <div class="list card">
       <div class="item">
         <img id="item-img" src="http://www.portableone.com/images/macbook-pro-for-college.jpg">
@@ -45,7 +45,7 @@
     </div>
   </ion-content>
 
-  <ion-footer-bar class="bar bar-footer bar-balanced" ng-click="createListing()">
+  <ion-footer-bar class="bar bar-footer bar-dark" ng-click="createListing()">
       <div class="title" id="create-button-title">Create</div>
   </ion-footer-bar>
 

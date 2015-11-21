@@ -5,10 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 var ffe = angular.module('ffe', ['ionic']);
 
-var client = new WindowsAzure.MobileServiceClient(
-  "https://ffe.azure-mobile.net/",
-  "JhHiFEmbuhJbHqIjrQjTYNJedsOMbQ29"
-);
+//var client = new WindowsAzure.MobileServiceClient(
+//  "https://ffe.azure-mobile.net/",
+//  "JhHiFEmbuhJbHqIjrQjTYNJedsOMbQ29"
+//);
 
 ffe.run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {

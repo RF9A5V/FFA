@@ -63,7 +63,7 @@ ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','
 
   $stateProvider.state('login', login);
   $stateProvider.state('home', home);
-  $stateProvider.state('profile', home);
+  $stateProvider.state('profile', profile);
   $stateProvider.state('testlisting', testlisting);
 
   $stateProvider.state('tabs', tab);

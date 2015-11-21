@@ -106,6 +106,12 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             $scope.create_listing_modal = modal;
         });
 
+        $ionicModal.fromTemplateUrl('templates/modals/listing_detail.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.listing_details_modal = modal;
+        });
+
         $scope.goProfile = function () {
             $state.go("profile");
         };

@@ -25,7 +25,6 @@
 
         <!--<ion-scroll class="xcard1scroll">-->
 
-
         <div class="card card-wrapper2 padding" ng-show="showListings">
 
             <ion-scroll class="xcard2scroll">
@@ -39,7 +38,7 @@
                           show-delete="shouldShowDelete"
                           show-reorder="shouldShowReorder"
                           can-swipe="listCanSwipe">
-                    <ion-item class="item-thumbnail-left" ng-repeat="listing in listings">
+                    <ion-item class="item-thumbnail-left" ng-repeat="listing in listings" ng-click="modifyItem(listing)">
                         <!--<div class="item item-body">-->
                         <!--<button class="button"><i class="icon ion-close"></i></button>-->
                         <h4>Posted: {{listing.time}}</h4>

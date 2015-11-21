@@ -1,46 +1,44 @@
 <ion-view view-title="{{selected_item.title}}">
-  <ion-nav-bar class="bar-positive">
-    <ion-nav-buttons side="left">
-      <a class="button button-clear icon ion-close"></a>
-    </ion-nav-buttons>
-
-    <ion-nav-buttons side="right">
-      <a class="button button-clear icon ion-ios-trash"></a>
-    </ion-nav-buttons>
-  </ion-nav-bar>
-  <ion-content class="listing">
-    <div class="list card">
-      <div class="item">
-        <img id="item-img" ng-src="{{selected_item.img}}">
-      </div>
-
-      <div class="item item-floating-label">
-        <a class="ion-ios-location">&nbsp{{selected_item.location}}</a>
-        <a class="ion-android-favorite" id="item-likes">&nbsp{{selected_item.likes}}</a>
-      </div>
-
-      <div class="item">
-        <span>Category:</span>
-        <span>{{selected_item.category}}</span>
-      </div>
-
-      <div class="item">
-        <span>Description:</span>
-        <span>{{selected_item.description}}</span>
-      </div>
-
-      <div class="item">
-        <span>Tags:</span>
-        <div ng-repeat="tag in selected_item.tags">
-          <span>{{tag}}</span>
+    <ion-header-bar class="bar-stable">
+        <div class="buttons">
+            <a class="button button-clear icon ion-close" ng-click="listing_details_modal.hide()"></a>
         </div>
-      </div>
+        <h1 class="title">Details</h1>
+    </ion-header-bar>
+    <ion-content class="listing">
+        <div class="list card">
+            <div class="item">
+                <img id="item-img" ng-src="{{selected_item.img}}">
+            </div>
 
-      <div class="item">
-        <span>Contact:</span>
-        <span>{{selected_item.contact}}</span>
-      </div>
+            <div class="item item-floating-label">
+                <a class="ion-ios-location">&nbsp{{selected_item.location}}</a>
+                <a class="ion-android-favorite" id="item-likes">&nbsp{{selected_item.likes}}</a>
+            </div>
 
-    </div>
-  </ion-content>
+            <div class="item">
+                <span>Category:</span>
+                <span>{{selected_item.category}}</span>
+            </div>
+
+            <div class="item">
+                <span>Description:</span>
+                <span>{{selected_item.description}}</span>
+            </div>
+
+            <div class="item">
+                <span>Tags:</span>
+
+                <div ng-repeat="tag in selected_item.tags">
+                    <span>{{tag}}</span>
+                </div>
+            </div>
+
+            <div class="item">
+                <span>Contact:</span>
+                <span>{{selected_item.contact}}</span>
+            </div>
+
+        </div>
+    </ion-content>
 </ion-view>

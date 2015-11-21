@@ -20,8 +20,13 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     $scope.listings = [
         {
             title: 'lol',
+            category: '2',
             time: '6 seconds ago',
-            description: 'Air that is easily breathable'
+            description: 'Air that is easily breathable',
+            tags:'test',
+            contact: 'Jason Chiu',
+            location: 'esports arena'
+
         },
         {
             title: 'pop',
@@ -167,6 +172,23 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     $scope.$on('modal.removed', function () {
         // Execute action
     });
+
+    $ionicModal.fromTemplateUrl('templates/modals/modify_listing.html', {
+        scope: $scope
+    }).then(function (modal) {
+        $scope.modify_listing_modal = modal;
+    });
+
+    $scope.modifyItem = function (data){
+        $scope.selectedItem = data;
+        $scope.modify_listing_modal.show();
+    };
+
+    $scope.updateItem = function (data){
+        // TODO: save the updated object
+        $scope.modify_listing_modal.hide();
+    }
+
     //$scope.shouldShowDelete = false;
     //$scope.shouldShowReorder = false;
     //$scope.listCanSwipe = true

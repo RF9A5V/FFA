@@ -17,7 +17,6 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup',function($
     $scope.showWishlist = true;
   };
 
-
   $scope.listings = [
     {
       title: 'lol',
@@ -41,6 +40,7 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup',function($
     }
 
   ];
+
 
   $scope.wishlist = [
     {

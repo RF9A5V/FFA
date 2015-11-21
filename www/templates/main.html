@@ -1,4 +1,4 @@
-<ion-view view-title="Home">
+<ion-nav-view class="home">
     <div>
         <ion-header-bar align-title="center" class="bar-light">
 
@@ -15,24 +15,31 @@
 
     </div>
 
-
     <ion-tabs class="tabs-color-dark tabs-background-stable tabs-icon-only">
         <ion-tab title="Food" on-select="filter_food()">
-            hello tab food, here will be lists of food items
-            <p>What the fk is wrong with this shit tho</p>
-            <button>
-                give me a reason to believe
-            </button>
+            <ion-view title="food">
+                <div class="main-body">
+                    <p>What the fk is wrong with this shit tho</p>
+                    <button id="test">
+                        give me a reason to believe
+                    </button>
+                </div>
+            </ion-view>
         </ion-tab>
 
         <ion-tab title="Furniture" on-select="filter_furniture()">
-            hello tab furniture, here will be lists of furniture items
+            <ion-view title="food">
+
+                hello tab furniture, here will be lists of furniture items
+            </ion-view>
         </ion-tab>
 
         <ion-tab title="electronics" on-select="filter_electronics()">
-            hello tab electronics, here will be lists of electronics items
-
+            <ion-view title="food">
+                hello tab electronics, here will be lists of electronics items
+            </ion-view>
         </ion-tab>
     </ion-tabs>
 
-</ion-view>
+
+</ion-nav-view>

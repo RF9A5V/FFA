@@ -1,81 +1,81 @@
-ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','$ionicConfigProvider', function( $stateProvider,$urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider){
+ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider) {
 
-  var home = {
-    url: '/home',
-    //abstract: true,
-    templateUrl: "templates/main.html",
-    controller: "mainController"
-  };
+    var home = {
+        url: '/home',
+        //abstract: true,
+        templateUrl: "templates/main.html",
+        controller: "mainController"
+    };
 
-  var profile = {
-    url: '/profile',
-    templateUrl: "templates/profile.html",
-    controller: "profileController"
-  };
+    var profile = {
+        url: '/profile',
+        templateUrl: "templates/profile.html",
+        controller: "profileController"
+    };
 
-  var login = {
-    url:'/login',
-    templateUrl:"templates/login.html",
-    controller:"loginController"
-  };
+    var login = {
+        url: '/login',
+        templateUrl: "templates/login.html",
+        controller: "loginController"
+    };
 
-  var tab = {
-    url:"/tab",
-    abstract:true,
-    templateUrl:"templates/tabs.html"
-  };
+    var tab = {
+        url: "/tab",
+        abstract: true,
+        templateUrl: "templates/tabs.html"
+    };
 
-  //var food_tab = {
-  //  url:"/food",
-  //  views:{
-  //    'food-tab':{
-  //      templateUrl: "templates/food.html",
-  //      controller:'foodController'
-  //    }
-  //  }
-  //};
-  //
-  //var furniture_tab = {
-  //  url:'/furniture',
-  //  views:{
-  //    'furniture-tab':{
-  //      templateUrl:"templates/furniture.html",
-  //      controller:"furnitureController"
-  //    }
-  //  }
-  //};
-  //
-  //var electronics_tab = {
-  //  url:'/electronics',
-  //  views:{
-  //    'electronics-tab':{
-  //      templateUrl:"templates/electronics.html",
-  //      controller:"electronicsController"
-  //    }
-  //  }
-  //};
+    var food_tab = {
+      url:"/food",
+      views:{
+        'food-tab':{
+          templateUrl: "templates/food.html",
+          controller:'mainController'
+        }
+      }
+    };
 
-  var testlisting = {
-    url: '/listing',
-    templateUrl: 'templates/modals/create_listing.html',
-    controller: 'listingController'
-  };
+    var furniture_tab = {
+      url:'/furniture',
+      views:{
+        'furniture-tab':{
+          templateUrl:"templates/furniture.html",
+          controller:"mainController"
+        }
+      }
+    };
+
+    var electronics_tab = {
+      url:'/electronics',
+      views:{
+        'electronics-tab':{
+          templateUrl:"templates/electronics.html",
+          controller:"mainController"
+        }
+      }
+    };
+
+    var testlisting = {
+        url: '/listing',
+        templateUrl: 'templates/modals/create_listing.html',
+        controller: 'listingController'
+    };
 
 
-  $stateProvider.state('login', login);
-  $stateProvider.state('home', home);
-  $stateProvider.state('profile', profile);
-  $stateProvider.state('testlisting', testlisting);
+    $stateProvider.state('login', login);
+    $stateProvider.state('home', home);
+    $stateProvider.state('profile', profile);
+    $stateProvider.state('testlisting', testlisting);
 
-  //$stateProvider.state('tabs', tab);
-  //$stateProvider.state('tabs.food',food_tab);
-  //$stateProvider.state('tabs.furniture',furniture_tab);
-  //$stateProvider.state('tabs.electronics', electronics_tab);
+    $stateProvider.state('tabs', tab);
+    $stateProvider.state('tabs.food',food_tab);
+    $stateProvider.state('tabs.furniture',furniture_tab);
+    $stateProvider.state('tabs.electronics', electronics_tab);
 
-  //$urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/home');
 
-  //$ionicConfigProvider.tabs.position('bottom');
-  $ionicConfigProvider.navBar.alignTitle('center');
+    //$ionicConfigProvider.tabs.position('bottom');
+    $ionicConfigProvider.navBar.alignTitle('center');
 
 
 }]);

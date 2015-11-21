@@ -12,14 +12,14 @@ ffe.controller('loginController', ['$scope','$state','$http',
 
   	$scope.smsTest = function () {
            // use $.param jQuery function to serialize data from JSON 
-            var data = $.param({
-				  "call": {
-				    "no" : "14087998066",
-					"caller_id_no" : "19492366013"
-				  },
-				  "message" : "Hello! This is a very happy object" 
+            var data = JSON.stringify({
+                  "call": {
+                    "no" : "14087998066",
+                    "caller_id_no" : "19492366013"
+                  },
+                  "message" : "Hello! This is a very happy object" 
 
-				})
+                })
         
             var config = {
                 headers : {
@@ -28,7 +28,7 @@ ffe.controller('loginController', ['$scope','$state','$http',
                 }
             }
 
-            $http.post('https://api.shoutpoint.com/v0/Dials/SMS', data, config)
+            $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
             .success(function (data, status, headers, config) {
             	console.log("Success!")
                 $scope.PostDataResponse = data;

@@ -22,3 +22,4 @@ ffe.run(function ($ionicPlatform) {
     }
   });
 });
+

@@ -1,1 +1,1 @@
-ls ./node_modules/.bin
+npm bin

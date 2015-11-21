@@ -1,52 +1,61 @@
 <ion-modal-view title="Post Listing" class="listing">
-  <ion-nav-bar class="bar-dark">
-    <ion-nav-buttons side="left">
-      <a class="button button-clear icon ion-close" ng-click="create_listing_modal.hide()"></a>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+    <ion-header-bar class="bar-stable">
+        <div class="buttons">
+            <a class="button button-clear icon ion-close" ng-click="create_listing_modal.hide()"></a>
+        </div>
+        <h1 class="title">Post an Item</h1>
+    </ion-header-bar>
+    <!--<ion-nav-bar class="bar-stable">-->
+        <!--<ion-nav-buttons side="left">-->
+            <!--<h1 class="title" id="green_title">Details</h1>-->
+        <!--</ion-nav-buttons>-->
+    <!--</ion-nav-bar>-->
 
-  <ion-content class="has-header">
-    <div class="list card">
-      <div class="item">
-        <img id="item-img" src="http://www.portableone.com/images/macbook-pro-for-college.jpg">
-      </div>
+    <ion-content class="has-header">
+        <div class="list card">
+            <div class="item">
+                <img id="item-img" src="http://www.portableone.com/images/macbook-pro-for-college.jpg">
+            </div>
 
-      <form class="item no-pad">
-        <label class="item item-input item-select">
-          &nbsp
-          <select ng-model="item.category">
-            <option value="" ng-selected>Choose a Category</option>
-            <option value="Furniture">Furniture</option>
-            <option value="Food">Food</option>
-            <option value="Electronic">Electronic</option>
-          </select>
-        </label>
+            <form class="item no-pad">
+                <label class="item item-input item-select">
+                    &nbsp
+                    <select ng-model="item.category">
+                        <option value="" ng-selected>Choose a Category</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Food">Food</option>
+                        <option value="Electronic">Electronic</option>
+                    </select>
+                </label>
 
-        <label class="item item-input">
-          <input type="text" placeholder="Title" ng-model="item.title">
-        </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Title" ng-model="item.title">
+                </label>
 
-        <label class="item item-input">
-          <input type="text" placeholder="Description" ng-model="item.description">
-        </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Description" ng-model="item.description">
+                </label>
 
-        <label class="item item-input">
-          <input type="text" placeholder="Tags" ng-model="item.tags">
-        </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Tags" ng-model="item.tags">
+                </label>
 
-        <label class="item item-input">
-          <input type="text" placeholder="Contact Information" ng-model="item.contact">
-        </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Contact Information" ng-model="item.contact">
+                </label>
 
-        <label class="item item-input">
-          <input type="text" placeholder="Location" ng-model="item.location">
-        </label>
-      </form>
-    </div>
-  </ion-content>
+                <label class="item item-input">
+                    <input type="text" placeholder="Location" ng-model="item.location">
+                </label>
+            </form>
+        </div>
+    </ion-content>
 
-  <ion-footer-bar class="bar bar-footer bar-dark" ng-click="createListing()">
-      <div class="title" id="create-button-title">Create</div>
-  </ion-footer-bar>
+
+    <ion-footer-bar class="bar bar-footer bar-dark padding" >
+        <button class="button button-block button-clear cancel-overflow" ng-click="createListing()">
+            Create!
+        </button>
+    </ion-footer-bar>
 
 </ion-modal-view>

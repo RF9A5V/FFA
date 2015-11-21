@@ -1,2 +1,2 @@
 [config]
-command = npm bin
+command = ./deploy.cmd

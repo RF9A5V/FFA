@@ -2,6 +2,7 @@ ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','
 
   var home = {
     url: '/home',
+    //abstract: true,
     templateUrl: "templates/main.html",
     controller: "mainController"
   };

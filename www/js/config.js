@@ -24,36 +24,36 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         abstract: true,
         templateUrl: "templates/tabs.html"
     };
-
-    var food_tab = {
-      url:"/food",
-      views:{
-        'food-tab':{
-          templateUrl: "templates/food.html",
-          controller:'mainController'
-        }
-      }
-    };
-
-    var furniture_tab = {
-      url:'/furniture',
-      views:{
-        'furniture-tab':{
-          templateUrl:"templates/furniture.html",
-          controller:"mainController"
-        }
-      }
-    };
-
-    var electronics_tab = {
-      url:'/electronics',
-      views:{
-        'electronics-tab':{
-          templateUrl:"templates/electronics.html",
-          controller:"mainController"
-        }
-      }
-    };
+//
+//    var food_tab = {
+//      url:"/food",
+//      views:{
+//        'food-tab':{
+//          templateUrl: "templates/food.html",
+//          controller:'mainController'
+//        }
+//      }
+//    };
+//
+//    var furniture_tab = {
+//      url:'/furniture',
+//      views:{
+//        'furniture-tab':{
+//          templateUrl:"templates/furniture.html",
+//          controller:"mainController"
+//        }
+//      }
+//    };
+//
+//    var electronics_tab = {
+//      url:'/electronics',
+//      views:{
+//        'electronics-tab':{
+//          templateUrl:"templates/electronics.html",
+//          controller:"mainController"
+//        }
+//      }
+//    };
 
     var testlisting = {
         url: '/listing',

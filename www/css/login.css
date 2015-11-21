@@ -1,0 +1,35 @@
+
+
+
+#login-frame{
+	margin-bottom: 10%;
+	width: 100%;
+	position: relative;	
+}
+
+#login-frame .img-border{
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+}
+
+#login-frame .img-border img{
+	border-radius: 500px;
+	border: solid 2px grey;
+	margin-top: 100px;
+}	
+
+
+#login-button-container{
+	width:100%;
+	position: relative;
+	display: block;
+}
+
+#login-button-container .button{
+	width:80%;
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	border: solid px grey;	
+}

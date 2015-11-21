@@ -1,1 +1,1 @@
-ls D:\home\site\repository\node_modules\.bin
+ls node_modules

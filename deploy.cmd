@@ -1,1 +1,1 @@
-doskey npm-exec=$(npm bin) $*
+ls ./node_modules/.bin

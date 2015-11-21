@@ -1,4 +1,5 @@
-ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider) {
+ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$ionicConfigProvider',
+  function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider) {
 
     var home = {
         url: '/home',
@@ -24,36 +25,6 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         abstract: true,
         templateUrl: "templates/tabs.html"
     };
-//
-//    var food_tab = {
-//      url:"/food",
-//      views:{
-//        'food-tab':{
-//          templateUrl: "templates/food.html",
-//          controller:'mainController'
-//        }
-//      }
-//    };
-//
-//    var furniture_tab = {
-//      url:'/furniture',
-//      views:{
-//        'furniture-tab':{
-//          templateUrl:"templates/furniture.html",
-//          controller:"mainController"
-//        }
-//      }
-//    };
-//
-//    var electronics_tab = {
-//      url:'/electronics',
-//      views:{
-//        'electronics-tab':{
-//          templateUrl:"templates/electronics.html",
-//          controller:"mainController"
-//        }
-//      }
-//    };
 
     var testlisting = {
         url: '/listing',
@@ -61,21 +32,13 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         controller: 'listingController'
     };
 
-
     $stateProvider.state('login', login);
     $stateProvider.state('home', home);
     $stateProvider.state('profile', profile);
     $stateProvider.state('testlisting', testlisting);
 
-    $stateProvider.state('tabs', tab);
-    $stateProvider.state('tabs.food',food_tab);
-    $stateProvider.state('tabs.furniture',furniture_tab);
-    $stateProvider.state('tabs.electronics', electronics_tab);
-
     $urlRouterProvider.otherwise('/home');
 
     //$ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
-
-
 }]);

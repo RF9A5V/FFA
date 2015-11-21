@@ -7,8 +7,8 @@
         </button>
         <h1 class="title">Free for Everyone</h1>
 
-        <a class="button button-clear cancel-overflow icon ion-compose" ng-click="goCompose()"></a>
 
+        <a class="button button-clear cancel-overflow icon ion-compose" ng-click="openModal()" side="right"></a>
     </ion-header-bar>
     <ion-content>
         <!--<div class="card-wrapper1">-->
@@ -30,10 +30,11 @@
         <div class="card card-wrapper2 padding" ng-show="showListings">
 
             <ion-scroll class="xcard2scroll">
-                <ion-refresher
-                        pulling-text="Pull to refresh..."
-                        on-refresh="doRefresh()">
-                </ion-refresher>
+                <!--<ion-refresher-->
+                        <!--pulling-text="Pull to refresh..."-->
+                        <!--on-refresh="doRefresh()">-->
+                <!--</ion-refresher>-->
+
                 <ion-list class="list "
                           ng-controller="profileController"
                           show-delete="shouldShowDelete"
@@ -74,27 +75,23 @@
 
             <ion-scroll class="xcard2scroll">
 
-                <ion-refresher
-                        pulling-text="Pull to refresh..."
-                        on-refresh="doRefresh()">
-                </ion-refresher>
+                <!--<ion-refresher-->
+                        <!--pulling-text="Pull to refresh..."-->
+                        <!--on-refresh="doRefresh()">-->
+                <!--</ion-refresher>-->
 
                 <ion-list class="list"
                           ng-controller="profileController"
                           show-delete="shouldShowDelete"
                           show-reorder="shouldShowReorder"
                           can-swipe="listCanSwipe">
-                    <ion-item class="item-thumbnail-left" ng-repeat="wish in wishlist">
+                    <ion-item ng-repeat="wish in wishlist">
                         <!--<div class="item item-body">-->
                         <!--<button><i class="icon ion-close"></i></button>-->
-                        <h4>Posted: {{wish.time}}</h4>
+                        <h4>Category: {{wish.time}}</h4>
 
                         <h2><b>{{wish.title}}</b></h2>
 
-                        <h3>{{wish.description}}</h3>
-                        <label>
-                            <a class="subdued">5 interested</a>
-                        </label>
 
                         <ion-option-button class="button button-assertive" ng-click="delete_wish(wish)">
                             Delete
@@ -114,3 +111,61 @@
     </ion-content>
 </ion-view>
 
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view title="Post Listing" class="listing">
+    <ion-nav-bar class="bar-dark">
+      <ion-nav-buttons side="left">
+        <a class="button button-clear icon ion-close" ng-click="closeModal()"></a>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="has-header">
+      <div class="list card">
+        <div ng-show="showListings" class="item">
+          <img id="item-img" src="http://www.portableone.com/images/macbook-pro-for-college.jpg">
+        </div>
+
+        <form class="item no-pad">
+          <label class="item item-input item-select">
+            &nbsp
+            <select ng-model="item.category">
+              <option value="" ng-selected>Choose a Category</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Food">Food</option>
+              <option value="Electronic">Electronic</option>
+            </select>
+          </label>
+
+          <label ng-show="showListings" class="item item-input">
+            <input type="text" placeholder="Title" ng-model="item.title">
+          </label>
+
+          <label ng-show="showListings" class="item item-input">
+            <input type="text" placeholder="Description" ng-model="item.description">
+          </label>
+
+          <label class="item item-input">
+            <input type="text" placeholder="Tags" ng-model="item.tags">
+          </label>
+
+          <label ng-show="showListings" class="item item-input">
+            <input type="text" placeholder="Contact Information" ng-model="item.contact">
+          </label>
+
+          <label ng-show="showListings" class="item item-input">
+            <input type="text" placeholder="Location" ng-model="item.location">
+          </label>
+        </form>
+      </div>
+    </ion-content>
+
+    <ion-footer-bar ng-show="showListings" class="bar bar-footer bar-dark" ng-click="createListing()">
+      <div class="title" id="create-button-title">Create</div>
+    </ion-footer-bar>
+
+    <ion-footer-bar ng-show="showWishlist" class="bar bar-footer bar-dark" ng-click="addToWishlist()">
+      <div class="title" id="create-button-title">Add to Wishlist</div>
+    </ion-footer-bar>
+
+  </ion-modal-view>
+</script>

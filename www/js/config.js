@@ -1,8 +1,4 @@
-/**
- * Created by Dooshkukakoo on 11/21/2015.
- */
-
-main.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','$ionicConfigProvider', function( $stateProvider,$urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider){
+ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','$ionicConfigProvider', function( $stateProvider,$urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider){
 
   var home = {
     url: '/home',
@@ -42,7 +38,7 @@ main.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider',
     url:'/furniture',
     views:{
       'furniture-tab':{
-        templateUrl:"templates/me.html",
+        templateUrl:"templates/furniture.html",
         controller:"furnitureController"
       }
     }
@@ -58,11 +54,17 @@ main.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider',
     }
   };
 
+  var testlisting = {
+    url: '/listing',
+    templateUrl: 'templates/modals/create_listing.html',
+    controller: 'listingController'
+  };
+
 
   $stateProvider.state('login', login);
   $stateProvider.state('home', home);
   $stateProvider.state('profile', home);
-
+  $stateProvider.state('testlisting', testlisting);
 
   $stateProvider.state('tabs', tab);
   $stateProvider.state('tabs.food',food_tab);

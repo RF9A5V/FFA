@@ -7,6 +7,15 @@
 	position: relative;	
 }
 
+#login-text{
+	height: 50px;
+}
+
+#login-text .bar .title{
+	font-family: 'Permanent Marker', cursive;
+}
+
+
 #login-frame .img-border{
 	position: relative;
 	margin: 0 auto;

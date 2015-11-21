@@ -1,2 +1,2 @@
 [config]
-command = npm install ionic && npm install cordova
+command = npm install

@@ -5,4 +5,3 @@
 /npm-debug.log
 /www/lib/
 *.iml
-!/node_modules/.bin/*

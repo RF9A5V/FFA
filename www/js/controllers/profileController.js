@@ -25,8 +25,13 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup', '$ionicMo
   $scope.listings = [
     {
       title: 'lol',
+      category: '2',
       time: '6 seconds ago',
-      description: 'Air that is easily breathable'
+      description: 'Air that is easily breathable',
+      tags:'test',
+      contact: 'Jason Chiu',
+      location: 'esports arena'
+
     },
     {
       title: 'pop',
@@ -37,6 +42,26 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup', '$ionicMo
       title: 'hoho',
       time: '2 minutes ago',
       description: "I'm giving away nothing. Just posting for fun :P"
+    },
+    {
+      title: 'yolo',
+      time: '5 minutes ago',
+      description: 'These descriptions will probably be a lot longer or not...'
+    },
+    {
+      title: 'yolo',
+      time: '5 minutes ago',
+      description: 'These descriptions will probably be a lot longer or not...'
+    },
+    {
+      title: 'yolo',
+      time: '5 minutes ago',
+      description: 'These descriptions will probably be a lot longer or not...'
+    },
+    {
+      title: 'yolo',
+      time: '5 minutes ago',
+      description: 'These descriptions will probably be a lot longer or not...'
     },
     {
       title: 'yolo',

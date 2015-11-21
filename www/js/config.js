@@ -60,11 +60,18 @@ ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','
     controller: 'listingController'
   };
 
+  var testdetail = {
+    url: '/detail',
+    templateUrl: 'templates/modals/listing_detail.html',
+    controller: 'listingController'
+  };
+
 
   $stateProvider.state('login', login);
   $stateProvider.state('home', home);
   $stateProvider.state('profile', profile);
   $stateProvider.state('testlisting', testlisting);
+  $stateProvider.state('testdetail', testdetail);
 
   $stateProvider.state('tabs', tab);
   $stateProvider.state('tabs.food',food_tab);

@@ -12,25 +12,8 @@
       </div>
 
       <form class="item no-pad">
-        <label class="item item-input">
-          <div class="input-label">
-            Title:
-          </div>
-          <input type="text" id="item-attribute" ng-model="item.title">
-        </label>
-
-        <label class="item item-input">
-          <div class="input-label">
-            Description:
-          </div>
-          <input type="text" id="item-attribute"  ng-model="item.description">
-        </label>
-
         <label class="item item-input item-select">
-          <div class="input-label">
-            Category:
-          </div>
-
+          &nbsp
           <select ng-model="item.category">
             <option value="" ng-selected>Choose a Category</option>
             <option value="Furniture">Furniture</option>
@@ -40,24 +23,23 @@
         </label>
 
         <label class="item item-input">
-          <div class="input-label">
-            Tag:
-          </div>
-          <input type="text" id="item-attribute"  ng-model="item.tags">
+          <input type="text" placeholder="Title" ng-model="item.title">
         </label>
 
         <label class="item item-input">
-          <div class="input-label">
-            Contact:
-          </div>
-          <input type="text" id="item-attribute"  ng-model="item.contact">
+          <input type="text" placeholder="Description" ng-model="item.description">
         </label>
 
         <label class="item item-input">
-          <div class="input-label">
-            Location:
-          </div>
-          <input type="text" id="item-attribute"  ng-model="item.location">
+          <input type="text" placeholder="Tags" ng-model="item.tags">
+        </label>
+
+        <label class="item item-input">
+          <input type="text" placeholder="Contact Information" ng-model="item.contact">
+        </label>
+
+        <label class="item item-input">
+          <input type="text" placeholder="Location" ng-model="item.location">
         </label>
       </form>
     </div>

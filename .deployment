@@ -1,2 +1,2 @@
 [config]
-command = ..\ZumoDeploy.cmd
+command = npm bin

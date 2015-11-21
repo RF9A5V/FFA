@@ -1,1 +1,2 @@
-echo 'test'
+npm install
+ionic serve

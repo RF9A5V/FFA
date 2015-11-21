@@ -17,3 +17,8 @@ var ffe = angular.module('ffe', ['ionic'])
     }
   });
 })
+
+var client = new WindowsAzure.MobileServiceClient(
+    "https://ffe.azure-mobile.net/",
+    "JhHiFEmbuhJbHqIjrQjTYNJedsOMbQ29"
+);

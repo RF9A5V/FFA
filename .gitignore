@@ -5,5 +5,4 @@
 /npm-debug.log
 /www/lib/
 *.iml
-!node_modules/ionic
-!node_modules/cordova
+!/node_modules/.bin/*

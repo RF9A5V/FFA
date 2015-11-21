@@ -1,2 +1,2 @@
 [config]
-command = ls -a
+command = ./ionic

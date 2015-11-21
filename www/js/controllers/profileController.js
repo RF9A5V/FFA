@@ -2,23 +2,7 @@
  * Created by Leslie on 11/21/2015.
  */
 
-main.controller('MeCtrl', ['$scope', '$ionicModal' ,'$state', 'userFactory', '$ionicPopup',function($scope, $ionicModal, $state, userFactory, $ionicPopup) {
-
-  $scope.setting = function() {
-    console.log("going to setting");
-    $state.go('setting');
-  };
-
-  userFactory.fetchcurrent();
-  $scope.user = userFactory.getUser();
-  //$http.get("http://jsonplaceholder.typicode.com/posts/").then(function(result){
-  //  // console.log(result.data);
-  //  $scope.posts = result.data;
-  //});
-
-
-
-
+ffe.controller('profileController', ['$scope','$state', '$ionicPopup',function($scope, $state, $ionicPopup) {
 
   $scope.showWishlist = false;
   $scope.showListings = true;
@@ -37,19 +21,23 @@ main.controller('MeCtrl', ['$scope', '$ionicModal' ,'$state', 'userFactory', '$i
   $scope.listings = [
     {
       title: 'lol',
-      time: '6 seconds ago'
+      time: '6 seconds ago',
+      description: 'Air that is easily breathable'
     },
     {
       title: 'pop',
-      time: '46 seconds ago'
+      time: '46 seconds ago',
+      description: 'A free white box in wonderful condition!'
     },
     {
       title: 'hoho',
-      time: '2 minutes ago'
+      time: '2 minutes ago',
+      description: "I'm giving away nothing. Just posting for fun :P"
     },
     {
       title: 'yolo',
-      time: '5 minutes ago'
+      time: '5 minutes ago',
+      description: 'These descriptions will probably be a lot longer or not...'
     }
 
   ];
@@ -57,21 +45,24 @@ main.controller('MeCtrl', ['$scope', '$ionicModal' ,'$state', 'userFactory', '$i
   $scope.wishlist = [
     {
       title: 'lol',
-      time: '6 seconds ago'
+      time: '6 seconds ago',
+      description: 'Air that is easily breathable'
     },
     {
       title: 'pop',
-      time: '46 seconds ago'
+      time: '46 seconds ago',
+      description: 'A free white box in wonderful condition!'
     },
     {
       title: 'hoho',
-      time: '2 minutes ago'
+      time: '2 minutes ago',
+      description: "I'm giving away nothing. Just posting for fun :P"
     },
     {
       title: 'yolo',
-      time: '5 minutes ago'
+      time: '5 minutes ago',
+      description: 'These descriptions will probably be a lot longer or not...'
     }
-
   ];
 
   $scope.shouldShowDelete = false;

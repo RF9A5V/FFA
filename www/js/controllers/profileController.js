@@ -44,7 +44,7 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup',function($
 
   $scope.wishlist = [
     {
-      title: 'lol',
+      title: 'hey',
       time: '6 seconds ago',
       description: 'Air that is easily breathable'
     },
@@ -72,6 +72,10 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup',function($
 
   $scope.loadMore = function() {
     $scope.items.push({id: $scope.items.length});
+  };
+
+  $scope.backToHome = function() {
+    $state.go("home");
   };
 
   $scope.delete_listing = function(post) {

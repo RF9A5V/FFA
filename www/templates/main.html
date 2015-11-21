@@ -1,0 +1,38 @@
+<ion-view view-title="Home">
+    <div>
+        <ion-header-bar align-title="center" class="bar-light">
+
+            <div class="buttons">
+                <a class="button button-clear icon ion-person" ng-click="goProfile()"></a>
+            </div>
+            <h1 class="title">Free for Everyone</h1>
+
+            <div class="buttons">
+                <a class="button button-clear cancel-overflow icon ion-compose" ng-click="goCompose()"></a>
+            </div>
+
+        </ion-header-bar>
+
+    </div>
+
+
+    <ion-tabs class="tabs-color-dark tabs-background-stable tabs-icon-only">
+        <ion-tab title="Food" on-select="filter_food()">
+            hello tab food, here will be lists of food items
+            <p>What the fk is wrong with this shit tho</p>
+            <button>
+                give me a reason to believe
+            </button>
+        </ion-tab>
+
+        <ion-tab title="Furniture" on-select="filter_furniture()">
+            hello tab furniture, here will be lists of furniture items
+        </ion-tab>
+
+        <ion-tab title="electronics" on-select="filter_electronics()">
+            hello tab electronics, here will be lists of electronics items
+
+        </ion-tab>
+    </ion-tabs>
+
+</ion-view>

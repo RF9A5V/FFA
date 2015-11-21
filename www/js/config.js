@@ -2,6 +2,7 @@ ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','
 
   var home = {
     url: '/home',
+    //abstract: true,
     templateUrl: "templates/main.html",
     controller: "mainController"
   };
@@ -24,35 +25,35 @@ ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','
     templateUrl:"templates/tabs.html"
   };
 
-  var food_tab = {
-    url:"/food",
-    views:{
-      'food-tab':{
-        templateUrl: "templates/food.html",
-        controller:'foodController'
-      }
-    }
-  };
-
-  var furniture_tab = {
-    url:'/furniture',
-    views:{
-      'furniture-tab':{
-        templateUrl:"templates/furniture.html",
-        controller:"furnitureController"
-      }
-    }
-  };
-
-  var electronics_tab = {
-    url:'/electronics',
-    views:{
-      'electronics-tab':{
-        templateUrl:"templates/electronics.html",
-        controller:"electronicsController"
-      }
-    }
-  };
+  //var food_tab = {
+  //  url:"/food",
+  //  views:{
+  //    'food-tab':{
+  //      templateUrl: "templates/food.html",
+  //      controller:'foodController'
+  //    }
+  //  }
+  //};
+  //
+  //var furniture_tab = {
+  //  url:'/furniture',
+  //  views:{
+  //    'furniture-tab':{
+  //      templateUrl:"templates/furniture.html",
+  //      controller:"furnitureController"
+  //    }
+  //  }
+  //};
+  //
+  //var electronics_tab = {
+  //  url:'/electronics',
+  //  views:{
+  //    'electronics-tab':{
+  //      templateUrl:"templates/electronics.html",
+  //      controller:"electronicsController"
+  //    }
+  //  }
+  //};
 
   var testlisting = {
     url: '/listing',
@@ -73,15 +74,15 @@ ffe.config(['$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider','
   $stateProvider.state('testlisting', testlisting);
   $stateProvider.state('testdetail', testdetail);
 
-  $stateProvider.state('tabs', tab);
-  $stateProvider.state('tabs.food',food_tab);
-  $stateProvider.state('tabs.furniture',furniture_tab);
-  $stateProvider.state('tabs.electronics', electronics_tab);
+  //$stateProvider.state('tabs', tab);
+  //$stateProvider.state('tabs.food',food_tab);
+  //$stateProvider.state('tabs.furniture',furniture_tab);
+  //$stateProvider.state('tabs.electronics', electronics_tab);
 
   //$urlRouterProvider.otherwise('/home');
 
-  //$ionicConfigProvider.tabs.position('top');
-  //$ionicConfigProvider.navBar.alignTitle('center');
+  //$ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.navBar.alignTitle('center');
 
 
 }]);

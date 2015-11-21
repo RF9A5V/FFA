@@ -20,11 +20,11 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         controller: "loginController"
     };
 
-    var tab = {
-        url: "/tab",
-        abstract: true,
-        templateUrl: "templates/tabs.html"
-    };
+    //var tab = {
+    //    url: "/tab",
+    //    abstract: true,
+    //    templateUrl: "templates/tabs.html"
+    //};
 
     var testlisting = {
         url: '/listing',

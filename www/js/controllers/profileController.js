@@ -6,6 +6,11 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup', '$ionicMo
 
   $scope.showWishlist = false;
   $scope.showListings = true;
+  $scope.showAdd = false;
+
+  $scope.toggleShowAdd = function () {
+    $scope.showAdd = !$scope.showAdd;
+  };
 
   $scope.show_listings = function (){
     $scope.showListings = true;
@@ -130,7 +135,14 @@ ffe.controller('profileController', ['$scope','$state', '$ionicPopup', '$ionicMo
     $scope.modal = modal;
   });
   $scope.openModal = function() {
-    $scope.modal.show();
+    if($scope.showWishlist)
+    {
+      $scope.toggleShowAdd();
+    }
+    else
+    {
+      $scope.modal.show();
+    }
   };
   $scope.closeModal = function() {
     $scope.modal.hide();

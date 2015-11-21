@@ -1,10 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<ion-view view-title="Profile">
+  <ion-content class="has-header">
+    <!--<div class="card-wrapper1">-->
+    <!--<div class="card xcard1">-->
+    <div class="button-bar padding">
+      <a class="button button-positive button-outline" ng-class="{'active': showListings}" ng-click = "show_listings()"  >
+        <p>My Listings</p>
+      </a>
+      <a class="button button-positive button-outline" ng-class="{'active': showWishlist}" ng-click = "show_wishlist()" >
+        <p>My Wishlist</p>
+      </a>
+    </div>
 
-</body>
-</html>
+    <!--<ion-scroll class="xcard1scroll">-->
+
+
+
+    <div class = "card card-wrapper2 padding" ng-show="showFav">
+
+      <ion-scroll class = "xcard2scroll">
+        <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list class="list "
+                  ng-controller="profileController"
+                  show-delete="shouldShowDelete"
+                  show-reorder="shouldShowReorder"
+                  can-swipe="listCanSwipe">
+          <ion-item ng-repeat= "listing in listings">
+            <!--<div class="item item-body">-->
+            <h2>{{listing.title}}</h2>
+            <h4>{{listing.time}}</h4>
+            <!--<label>-->
+              <!--<a href="#" class="subdued">1 understanding</a>-->
+              <!--<a href="#" class="subdued">5 OMG</a>-->
+            <!--</label>-->
+
+            <ion-option-button class="button-assertive"
+                               ng-click="delete_listing(listing)">
+              Delete
+            </ion-option-button>
+            <!--</div>-->
+          </ion-item>
+          <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
+          <!--<a class="tab-item" href="#">-->
+          <!--<i class="icon ion-ios-star-outline"></i>-->
+          <!--Favorite-->
+          <!--</a>-->
+          <!--</div>-->
+
+        </ion-list>
+
+      </ion-scroll>
+    </div>
+
+
+
+
+
+    <div class = "card card-wrapper2" ng-show="showWishlist">
+
+      <ion-scroll class = "xcard2scroll">
+
+        <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <ion-list class="list"
+                  ng-controller="profileController"
+                  show-delete="shouldShowDelete"
+                  show-reorder="shouldShowReorder"
+                  can-swipe="listCanSwipe">
+          <ion-item ng-repeat= "wish in wishlist">
+            <!--<div class="item item-body">-->
+            <h2>{{wish.title}}</h2>
+            <h4>{{wish.time}}</h4>
+            <!--<label>-->
+              <!--<a href="#" class="subdued">1 understanding</a>-->
+              <!--<a href="#" class="subdued">5 OMG</a>-->
+            <!--</label>-->
+
+            <ion-option-button class="button button-assertive" ng-click="delete_wish(wish)">
+              Delete
+            </ion-option-button>
+            <!--</div>-->
+          </ion-item>
+          <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
+          <!--<a class="tab-item" href="#">-->
+          <!--<i class="icon ion-ios-star-outline"></i>-->
+          <!--Favorite-->
+          <!--</a>-->
+          <!--</div>-->
+
+        </ion-list>
+      </ion-scroll>
+    </div>
+  </ion-content>
+  <ion-view view-title="Profile">

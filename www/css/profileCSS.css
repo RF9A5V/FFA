@@ -1,0 +1,27 @@
+.card-wrapper2 {
+  height: 43em;
+  padding: 10px 10px 10px 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 96.5%;
+  top: 60%;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.xcard2scroll {
+  height: 95%;
+}
+
+.xcard2.card {
+  height: 100%;
+  width: 100%;
+  /*length: 50%;*/
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px !important;
+  background-color: #fff;
+}

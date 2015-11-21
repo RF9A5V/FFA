@@ -1,2 +1,2 @@
 [config]
-command = ./ionic
+command = ls -a node_modules/

@@ -4,6 +4,12 @@
 ffe.controller('loginController', ['$scope', '$state', '$http',
     function ($scope, $state, $http) {
 
+        $scope.user ={
+            name: '',
+            email:'',
+            password: '',
+            telephone:''
+        };
 
         $scope.backToHome = function () {
             $state.go("home");
@@ -14,8 +20,36 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
         };
 
         $scope.newUser = function (){
-            //post new user infomation
-        };
+            var data = $.param({
+                json: JSON.stringify({
+                   name: $scope.user.name ,
+                   email: $scope.user.email,
+                   password: $scope.user.password,
+                   telephone: $scope.user.telephone
+               })
+            });
+
+            $http.post('http://localhost:1337/users/create',data)
+                .success(function(data,status){
+                    $scope.PostDataResponse = data;
+            })
+                .error(function(res){
+                   console.log(res);
+                });
+
+        //$.ajax({
+        //    url: 'http://localhost:1337/users/create',
+        //    data: {
+        //        name: $scope.user.name,
+        //        email: $scope.user.email,
+        //        password: $scope.user.password,
+        //        telephone: $scope.user.telephone
+        //    },
+        //    crossDomain: true,
+        //    method: 'POST'
+        //})
+
+    };
 
         $scope.smsTest = function () {
             // use $.param jQuery function to serialize data from JSON

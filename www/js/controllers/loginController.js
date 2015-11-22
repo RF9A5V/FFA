@@ -1,7 +1,7 @@
 /**
  * Created by Dooshkukakoo on 11/21/2015.
  */
-ffe.controller('loginController', ['$scope', '$state', '$http',
+ ffe.controller('loginController', ['$scope', '$state', '$http',
     function ($scope, $state, $http) {
         $scope.user ={
             name: '',
@@ -29,9 +29,23 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
         $scope.submit_login = function () {
             //do log-in ajax call here
             console.log("Trying to log in", $scope.user);
+            console.log("User:" + $scope.user.email);
+
+            $.ajax({
+               url: 'http://localhost:1337/login',
+               data: {
+                   email: $scope.user.email,
+                   password: $scope.user.password,
+               },
+               crossDomain: true,
+               method: 'POST',
+               success: $scope.backToHome()
+                          })
+
+
         };
 
-        $scope.newUser = function (){
+      $scope.newUser = function (){
             // var data = $.param({
             //     json: JSON.stringify({
             //        name: $scope.user.name ,
@@ -49,34 +63,34 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
             //        console.log(res);
             //     });
 
-        $.ajax({
-           url: 'http://localhost:1337/users/create',
-           data: {
-               name: $scope.user.name,
-               email: $scope.user.email,
-               password: $scope.user.password,
-               telephone: $scope.user.telephone
-           },
-           crossDomain: true,
-           method: 'POST'
-        })
+$.ajax({
+   url: 'http://localhost:1337/users/create',
+   data: {
+       name: $scope.user.name,
+       email: $scope.user.email,
+       password: $scope.user.password,
+       telephone: $scope.user.telephone
+   },
+   crossDomain: true,
+   method: 'POST'
+})
 
 
-        /* Hacky way to attempt to get it directly to post to /login */
+/* Hacky way to attempt to get it directly to post to /login */
 
-         $.ajax({
-           url: 'http://localhost:1337/login',
-           data: {
-               email: $scope.user.email,
-               password: $scope.user.password,
-           },
-           crossDomain: true,
-           method: 'POST'
-        })
+$.ajax({
+   url: 'http://localhost:1337/login',
+   data: {
+       email: $scope.user.email,
+       password: $scope.user.password,
+   },
+   crossDomain: true,
+   method: 'POST'
+})
 
-    };
+};
 
-        $scope.smsTest = function () {
+$scope.smsTest = function () {
             // use $.param jQuery function to serialize data from JSON
             var data = $.param({
                 "call": {
@@ -95,16 +109,16 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
             };
 
             $http.post('https://api.shoutpoint.com/v0/Dials/SMS', data, config)
-                .success(function (data, status, headers, config) {
-                    console.log("Success!")
-                    $scope.PostDataResponse = data;
-                })
+            .success(function (data, status, headers, config) {
+                console.log("Success!")
+                $scope.PostDataResponse = data;
+            })
 
-                .error(function (data, status, header, config) {
-                    $scope.ResponseDetails = "Data: " + data +
-                        "<hr />status: " + status +
-                        "<hr />headers: " + header +
-                        "<hr />config: " + config;
-                });
+            .error(function (data, status, header, config) {
+                $scope.ResponseDetails = "Data: " + data +
+                "<hr />status: " + status +
+                "<hr />headers: " + header +
+                "<hr />config: " + config;
+            });
         };
     }]);

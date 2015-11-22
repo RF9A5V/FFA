@@ -51,7 +51,7 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         $stateProvider.state('create_user', create_user);
         $stateProvider.state('verification', verification);
 
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/start');
 
         //$ionicConfigProvider.tabs.position('bottom');
         $ionicConfigProvider.navBar.alignTitle('center');

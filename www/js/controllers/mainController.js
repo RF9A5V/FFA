@@ -101,7 +101,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
           $.ajax({
               url: 'http://localhost:1337/items/create',
               data: { // TODO: Replace with actual fucking data
-                name: $scope.item.title,
+                title: $scope.item.title,
                 description: $scope.item.description,
                 location: $scope.item.location,
                 category: $scope.item.category,
@@ -152,9 +152,10 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
         xhrFields: {
           withCredentials: true
         },
-        success: $scope.lockThisItem()
-        // success: $scope.sendConfirmationSMS(interestMSG)
+        // success: $scope.lockThisItem()
+        success: $scope.sendItemInterestSMS($scope.selected_item.title)
       });
+        console.log($scope.selected_item.title);
 
     };
 
@@ -169,14 +170,6 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
       }).then(function (res) {
         $state.go('start');
       })
-    };
-
-    $scope.createListing = function () {
-      // console.log($scope.item);
-      $scope.currUser = userFactory.getUser();
-      console.log($scope.currUser);
-      console.log("User phone number: ", $scope.currUser.telephone);
-      confirmCreate();
     };
 
     $ionicModal.fromTemplateUrl('templates/modals/create_listing.html', {
@@ -228,6 +221,41 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
       $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
         .success(function (data, status, headers, config) {
           console.log("Item has been posted, success!")
+          $scope.PostDataResponse = data;
+        }).error(function (data, status, header, config) {
+          $scope.ResponseDetails = "Data: " + data +
+            "<hr />status: " + status +
+            "<hr />headers: " + header +
+            "<hr />config: " + config;
+        });
+    };
+
+      $scope.sendItemInterestSMS = function (name) {
+      var confirmMSG = "Hi " 
+      + $scope.currUser.name 
+      + ", thanks for using Free for Everyone! You'll now get updates for " 
+      + name;
+      var data = JSON.stringify({
+        "call": {
+          // "no": "14087998066",
+          "no": $scope.currUser.telephone,
+          "caller_id_no": "19492366013"
+        },
+        "message": confirmMSG
+      });
+
+      var config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': 'LmQxkLomw8seszAR29n0LcGaOCvp1ibj'
+        }
+      };
+
+      console.log("Making a shoutpoint sms post: " + data)
+
+      $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
+        .success(function (data, status, headers, config) {
+          console.log("Interest success!")
           $scope.PostDataResponse = data;
         }).error(function (data, status, header, config) {
           $scope.ResponseDetails = "Data: " + data +

@@ -1,10 +1,6 @@
 ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSideMenuDelegate', '$ionicModal', '$http', 'userFactory',
   function ($scope, $state, $ionicPopup, $ionicSideMenuDelegate, $ionicModal, $http, userFactory) {
-
-
-    //Retrieves current user
-    var currUser = {};
-
+    var currUser = userFactory.getUser();
     var reset_item_fields = function () {
       $scope.item = {
         title: "",
@@ -39,6 +35,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     };
 
     $scope.doRefresh = function () {
+      currUser = userFactory.getUser();
       $scope.getAllObjects();
       $scope.$broadcast('scroll.refreshComplete');
       $scope.$apply();
@@ -47,11 +44,10 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     //$scope.doRefresh();
     $scope.getAllObjects();
     $scope.createListing = function () {
+      currUser = userFactory.getUser();
       // console.log($scope.item);
       // $scope.currUser      = userFactory.getUser();
-      $scope.currUser = userFactory.getUser();
-      console.log($scope.currUser);
-      console.log("User phone number: ", $scope.currUser.telephone);
+      console.log("User phone number: ", currUser.telephone);
       confirmCreate();
     };
 
@@ -82,6 +78,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     };
 
     var confirmCreate = function () {
+      currUser = userFactory.getUser();
       var confirmPopup = $ionicPopup.confirm({
         title: "Creating",
         template: "Are you sure you want to create this item?"
@@ -90,8 +87,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
         if (res) {
           console.log("Sending request to create item");
           // Test SMS functionality
-          $scope.currUser = userFactory.getUser();
-          var confirmMSG = "Thank you, " + $scope.currUser.name + " for using Free for Everyone! Your item has been publically listed."
+          var confirmMSG = "Thank you, " + userFactory.getUser().name + " for using Free for Everyone! Your item has been publically listed."
           $scope.sendConfirmationSMS(confirmMSG);
 
           console.log($scope.item.tags);
@@ -132,20 +128,20 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     };
 
     $scope.submitInterest = function () {
-      $scope.currUser = userFactory.getUser();
+      currUser = userFactory.getUser();
       console.log("This item was indicated ", $scope.selected_item.title);
-      console.log("Submitting interest for this user: ", $scope.currUser.email);
+      console.log("Submitting interest for this user: ", currUser.email);
 
       // Send a sms message indicating that you are now subscribed to this item.
 
-      var interestMSG = "Hello," + $scope.currUser.name + " for using Free for Everyone! You have been subscribed to: " + $scope.selected_item.title;
+      var interestMSG = "Hello," + currUser.name + " for using Free for Everyone! You have been subscribed to: " + $scope.selected_item.title;
       console.log(interestMSG);
       // Send a post request to this route to be handled.
       var tempID =  $scope.selected_item._id;
       $.ajax({
         url: 'http://ffe-api-reboot.mybluemix.net'+ tempID + '/like',
         data: {
-          pID: $scope.currUser.telephone,
+          pID: currUser.telephone,
           id: $scope.selected_item.uid,
         },
         crossDomain: true,
@@ -189,7 +185,6 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     };
 
     $scope.goHome = function () {
-      console.log("ASDA");
       $state.go('home');
     };
 
@@ -199,11 +194,12 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     };
 
     $scope.sendConfirmationSMS = function () {
-      var confirmMSG = "Thank you, " + $scope.currUser.name + " for using Free for Everyone! Your item has been publically listed."
+      currUser = userFactory.getUser();
+      var confirmMSG = "Thank you, " + currUser.name + " for using Free for Everyone! Your item has been publically listed."
       var data = JSON.stringify({
         "call": {
           // "no": "14087998066",
-          "no": $scope.currUser.telephone,
+          "no": currUser.telephone,
           "caller_id_no": "19492366013"
         },
         "message": confirmMSG
@@ -231,14 +227,15 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     };
 
       $scope.sendItemInterestSMS = function (name) {
-      var confirmMSG = "Hi " 
-      + $scope.currUser.name 
-      + ", thanks for using Free for Everyone! You'll now get updates for " 
+        currUser = userFactory.getUser();
+      var confirmMSG = "Hi "
+      + $currUser.name
+      + ", thanks for using Free for Everyone! You'll now get updates for "
       + name;
       var data = JSON.stringify({
         "call": {
           // "no": "14087998066",
-          "no": $scope.currUser.telephone,
+          "no": currUser.telephone,
           "caller_id_no": "19492366013"
         },
         "message": confirmMSG

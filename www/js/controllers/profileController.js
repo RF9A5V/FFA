@@ -4,7 +4,7 @@
 
 ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicModal', '$http', 'userFactory',
     function ($scope, $state, $ionicPopup, $ionicModal, $http, userFactory) {
-
+        var currUser = userFactory.getUser();
         $scope.showWishlist = false;
         $scope.showListings = true;
         $scope.showAdd = false;
@@ -27,10 +27,10 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
 
         $scope.listings=[];
         $scope.getMyObjects = function () {
-            currUser = userFactory.getUser();
+          currUser = userFactory.getUser();
 
             $.ajax({
-                url: 'http://ffe-api-reboot.mybluemix.net/items',
+                url: 'http://ffe-api-reboot.mybluemix.net/items/my_listings/' + currUser._id,
                 crossDomain: true,
                 method: 'GET',
                 xhrFields: {
@@ -88,55 +88,6 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         // };
 
         $scope.getMyObjects();
-
-        // $scope.listings = [
-        //     {
-        //         title: 'lol',
-        //         category: '2',
-        //         time: '6 seconds ago',
-        //         description: 'Air that is easily breathable',
-        //         tags:'test',
-        //         contact: 'Jason Chiu',
-        //         location: 'esports arena'
-
-        //     },
-        //     {
-        //         title: 'pop',
-        //         time: '46 seconds ago',
-        //         description: 'A free white box in wonderful condition!'
-        //     },
-        //     {
-        //         title: 'hoho',
-        //         time: '2 minutes ago',
-        //         description: "I'm giving away nothing. Just posting for fun :P"
-        //     },
-        //     {
-        //         title: 'yolo',
-        //         time: '5 minutes ago',
-        //         description: 'These descriptions will probably be a lot longer or not...'
-        //     },
-        //     {
-        //         title: 'yolo',
-        //         time: '5 minutes ago',
-        //         description: 'These descriptions will probably be a lot longer or not...'
-        //     },
-        //     {
-        //         title: 'yolo',
-        //         time: '5 minutes ago',
-        //         description: 'These descriptions will probably be a lot longer or not...'
-        //     },
-        //     {
-        //         title: 'yolo',
-        //         time: '5 minutes ago',
-        //         description: 'These descriptions will probably be a lot longer or not...'
-        //     },
-        //     {
-        //         title: 'yolo',
-        //         time: '5 minutes ago',
-        //         description: 'These descriptions will probably be a lot longer or not...'
-        //     }
-
-        // ];
         $scope.logOut = function () {
             $.ajax({
                 url: "http://ffe-api-reboot.mybluemix.net/login/destroy",
@@ -154,9 +105,9 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         $scope.wishlist = [];
 
         $scope.addTag = function (tag) {
-            $scope.currUser = userFactory.getUser();
-            console.log($scope.currUser);
-            actualAdd(tag, $scope.currUser._id);
+          currUser = userFactory.getUser();
+          console.log(currUser);
+          actualAdd(tag, $scope.currUser._id);
         };
 
         var actualAdd = function (tag, id) {
@@ -180,31 +131,6 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
                 }
             });
         };
-
-
-        // var loadTags = function(){
-        //    console.log("calling load tags");
-        //    $scope.currUser = userFactory.getUser();
-        //    actualLoad($scope.currUser._id)
-        //};
-        //
-        //loadTags();
-        //
-        //var actualLoad = function(id){
-        //    $.ajax({
-        //        url: 'http://localhost:1337/users/wishlist/' + id,
-        //        crossDomain: true,
-        //        method: 'GET',
-        //        xhrFields: {
-        //            withCredentials: true
-        //        }
-        //    }).then(function(val){
-        //        val.forEach(function(entry){
-        //            $scope.wishlist.push(entry);
-        //        });
-        //    });
-        //    console.log($scope.wishlist);
-        //};
 
 
         $scope.shouldShowDelete = false;
@@ -380,7 +306,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
                     "no": tel,
                     "caller_id_no": "19492366013"
                 },
-                "message": "Hello, this is a courtesy notice that the item " 
+                "message": "Hello, this is a courtesy notice that the item "
                 + titleOfItem + " has been claimed. "
             });
 

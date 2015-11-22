@@ -57,13 +57,11 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         $ionicConfigProvider.navBar.alignTitle('center');
     }]);
 
-ffe.run(['$state', '$rootScope', function ($state, $rootScope) {
+ffe.run(['$state', '$rootScope','userFactory', function ($state, $rootScope, userFactory) {
     $rootScope.$on("$stateChangeStart", function (event, toState, current) {
-        //if there isn't a user logged in to Parse, and if the state they're going to is login pages, let them go to login.
         $.ajax({
             url: "http://ffe-api-reboot.mybluemix.net/users/validate",
             success: function(data, text, jq){
-                console.log("WTFFFFFFFFFF",data.uid);
                 if(data.uid == undefined){
                     if (toState.name === 'login' || toState.name === 'create_user' || toState.name === 'start') {
                     } else {
@@ -72,6 +70,7 @@ ffe.run(['$state', '$rootScope', function ($state, $rootScope) {
                         console.log("not logged in")
                     }
                 }else {
+                    userFactory.setUserId(data.uid);
                     //if there is a user logged in, don't allow user to go to login pages. Redirect to home page.
                     if (toState.name === 'login' || toState.name === 'create_user' || toState.name === 'start') {
                         event.preventDefault();

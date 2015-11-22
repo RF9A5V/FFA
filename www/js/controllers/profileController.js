@@ -181,7 +181,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     });
     // Execute action on remove modal
     $scope.$on('modal.removed', function () {
-        // Execute action
+            // Execute action
     });
 
     $ionicModal.fromTemplateUrl('templates/modals/modify_listing.html', {
@@ -198,7 +198,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     $scope.updateItem = function (data){
         // TODO: save the updated object
         $scope.modify_listing_modal.hide();
-    }
+    };
 
     //$scope.shouldShowDelete = false;
     //$scope.shouldShowReorder = false;

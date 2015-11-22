@@ -96,6 +96,13 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
         $scope.createListing = function () {
             console.log($scope.item);
+            $http({
+                method: 'POST',
+                data: {
+                    name: $scope.item.title ,
+                    description: $scope.item.description
+                }
+            });
             //TODO: save the data here
             confirmCreate();
         };

@@ -1,14 +1,23 @@
 <ion-view view-title="Profile">
-    <ion-header-bar align-title="center" class="bar-light">
-        <button ng-click="backToHome()"
-                class="button button-dark back-button buttons button-clear header-item">
-            <i class="icon ion-chevron-left"></i>
-            <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">Back</span>
-        </button>
-        <h1 class="title">Free for Everyone</h1>
+    <!--<ion-header-bar align-title="center" class="bar-light">-->
+        <!--<button ng-click="backToHome()"-->
+                <!--class="button button-dark back-button buttons button-clear header-item">-->
+            <!--<i class="icon ion-chevron-left"></i>-->
+            <!--<span class="back-text" style="transform: translate3d(0px, 0px, 0px);">Back</span>-->
+        <!--</button>-->
+        <!--<h1 class="title">Free for Everyone</h1>-->
 
-        <a class="button button-clear cancel-overflow icon ion-compose" ng-click="openModal()" side="right"></a>
-    </ion-header-bar>
+
+        <!--<a class="button button-clear cancel-overflow icon ion-compose" ng-click="openModal()" side="right"></a>-->
+    <!--</ion-header-bar>-->
+    <ion-nav-bar class="bar-light">
+      <ion-nav-back-button class="button-clear">
+        Back
+      </ion-nav-back-button>
+      <ion-nav-buttons side="right">
+          <button class="button button-clear cancel-overflow icon" ng-class="{'ion-compose': showListings, 'ion-plus': showWishlist}" ng-click="openModal()"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
     <ion-content>
         <!--<div class="card-wrapper1">-->
         <!--<div class="card xcard1">-->
@@ -24,7 +33,6 @@
         </div>
 
         <!--<ion-scroll class="xcard1scroll">-->
-
         <div class="card card-wrapper2 padding" ng-show="showListings">
 
             <ion-scroll class="xcard2scroll">
@@ -70,7 +78,16 @@
 
 
         <div class="card card-wrapper2" ng-show="showWishlist">
-
+            <div class="list" ng-show="showAdd">
+              <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="Enter a tag." ng-model="newWish">
+                </label>
+                <button class="button button-dark button-small" ng-click="">
+                  Submit
+                </button>
+              </div>
+            </div>
             <ion-scroll class="xcard2scroll">
 
                 <!--<ion-refresher-->

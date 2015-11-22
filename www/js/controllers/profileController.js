@@ -3,9 +3,13 @@
  */
 
 ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicModal', function ($scope, $state, $ionicPopup, $ionicModal) {
+  $scope.showWishlist = false;
+  $scope.showListings = true;
+  $scope.showAdd = false;
 
-    $scope.showWishlist = false;
-    $scope.showListings = true;
+  $scope.toggleShowAdd = function () {
+    $scope.showAdd = !$scope.showAdd;
+  };
 
     $scope.show_listings = function () {
         $scope.showListings = true;
@@ -155,7 +159,14 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     });
 
     $scope.openModal = function () {
-        $scope.create_listing_modal.show();
+        if($scope.showWishlist)
+        {
+          $scope.toggleShowAdd();
+        }
+        else
+        {
+          $scope.create_listing_modal.show();
+        }
     };
     $scope.closeModal = function () {
         $scope.create_listing_modal.hide();
@@ -192,6 +203,4 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     //$scope.shouldShowDelete = false;
     //$scope.shouldShowReorder = false;
     //$scope.listCanSwipe = true
-
-
 }]);

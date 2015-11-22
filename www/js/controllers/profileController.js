@@ -20,19 +20,10 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             $scope.showWishlist = false;
         };
 
-<<<<<<< HEAD
         $scope.show_wishlist = function () {
             $scope.showListings = false;
             $scope.showWishlist = true;
         };
-=======
-    $scope.show_wishlist = function () {
-        $scope.showListings = false;
-        $scope.showWishlist = true;
-    };
-
-    $scope.listings = [];
->>>>>>> 08da111e170126414107e6085f8516c702c37f7b
 
         $scope.listings = [];
 
@@ -53,52 +44,50 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
                 // success: $scope.sendConfirmationSMS(interestMSG)
             });
         }
-<<<<<<< HEAD
-=======
-    ];
 
-    $scope.addTag = function (tag){
-        console.log(tag);
-        $scope.wishlist.push({title:"#"+tag});
-    };
 
-    $scope.shouldShowDelete = false;
-    $scope.shouldShowReorder = false;
-    $scope.listCanSwipe = true;
-    $scope.noMoreItemsAvailable = false;
+        $scope.addTag = function (tag) {
+            console.log(tag);
+            $scope.wishlist.push({title: "#" + tag});
+        };
 
-    $scope.loadMore = function () {
-        $scope.items.push({id: $scope.items.length});
-    };
+        $scope.shouldShowDelete = false;
+        $scope.shouldShowReorder = false;
+        $scope.listCanSwipe = true;
+        $scope.noMoreItemsAvailable = false;
 
-    $scope.backToHome = function () {
-        $state.go("home");
-    };
+        $scope.loadMore = function () {
+            $scope.items.push({id: $scope.items.length});
+        };
 
-    $scope.delete_listing = function (post) {
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'Delete',
-            template: 'Do you want to delete from my favorites?'
-        });
-        confirmPopup.then(function (res) {
-            // TODO: delete the post
-            if (res) {
-              //$.ajax({
-              //  url: 'http://localhost:1337/items/' + post._id,
-              //  data: {
-              //    id: post._id
-              //  },
-              //  crossDomain: true,
-              //  method: 'DELETE',
-              //  xhrFields: {
-              //    withCredentials: true
-              //  },
-              //  success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
-              //})
-              success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1);
-            }
-        });
->>>>>>> 08da111e170126414107e6085f8516c702c37f7b
+        $scope.backToHome = function () {
+            $state.go("home");
+        };
+
+        $scope.delete_listing = function (post) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Delete',
+                template: 'Do you want to delete from my favorites?'
+            });
+            confirmPopup.then(function (res) {
+                // TODO: delete the post
+                if (res) {
+                    //$.ajax({
+                    //  url: 'http://localhost:1337/items/' + post._id,
+                    //  data: {
+                    //    id: post._id
+                    //  },
+                    //  crossDomain: true,
+                    //  method: 'DELETE',
+                    //  xhrFields: {
+                    //    withCredentials: true
+                    //  },
+                    //  success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
+                    //})
+                    success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1);
+                }
+            });
+        };
 
         $scope.getMyObjects();
 
@@ -169,31 +158,30 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         $scope.addTag = function (tag) {
             $scope.currUser = userFactory.getUser();
             console.log($scope.currUser);
-            actualAdd(tag,$scope.currUser._id);
+            actualAdd(tag, $scope.currUser._id);
         };
 
-        var actualAdd = function (tag,id){
-            console.log(tag,id);
+        var actualAdd = function (tag, id) {
+            console.log(tag, id);
             $.ajax({
-                url: 'http://localhost:1337/users/wishlist/add/'+id,
-                data:{
-                    tag:tag
+                url: 'http://localhost:1337/users/wishlist/add/' + id,
+                data: {
+                    tag: tag
                 },
                 crossDomain: true,
                 method: 'POST',
                 xhrFields: {
                     withCredentials: true
                 },
-                success:function(res){
+                success: function (res) {
                     console.log(res);
                     $scope.alertAdded();
                 },
-                error:function(err){
+                error: function (err) {
                     console.log(err);
                 }
             });
         };
-
 
 
         // var loadTags = function(){
@@ -272,12 +260,12 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             });
         };
 
-        $scope.alertAdded = function (){
+        $scope.alertAdded = function () {
             var alertPopup = $ionicPopup.alert({
-                title:"Tag added!",
+                title: "Tag added!",
                 template: "Your wishlist has been updated!"
-            }).then(function(res){
-                $scope.newWish ='';
+            }).then(function (res) {
+                $scope.newWish = '';
             })
         };
 
@@ -341,3 +329,5 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         //$scope.shouldShowReorder = false;
         //$scope.listCanSwipe = true
     }]);
+
+

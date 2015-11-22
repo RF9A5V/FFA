@@ -4,7 +4,7 @@
 #login-frame{
 	margin-bottom: 10%;
 	width: 100%;
-	position: relative;	
+	position: relative;
 }
 
 #login-text{
@@ -25,9 +25,8 @@
 #login-frame .img-border img{
 	border-radius: 500px;
 	border: solid 2px grey;
-	margin-top: 100px;
-}	
-
+	margin-top: 70px;
+}
 
 #login-button-container{
 	width:100%;
@@ -37,8 +36,9 @@
 
 #login-button-container .button{
 	width:80%;
+  height: 20px;
 	display: block;
 	position: relative;
 	margin: 0 auto;
-	border: solid px grey;	
+	border: solid px grey;
 }

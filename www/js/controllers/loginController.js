@@ -1,39 +1,55 @@
-/**
- * Created by Dooshkukakoo on 11/21/2015.
- */
- ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
-    function ($scope, $state, $http, userFactory) {
-        $scope.user ={
-            name: '',
-            email:'',
-            password: '',
-            telephone:''
-        };
+ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
+  function ($scope, $state, $http, userFactory) {
+    $scope.user = {
+      name: '',
+      email: '',
+      password: '',
+      telephone: ''
+    };
 
-        $scope.backToHome = function () {
-
-            $state.go("home");
-        };
-
-        var saveAfterSuccessLogin = function(res){
+     var saveAfterSuccessLogin = function(res){
           console.log("Response after login: ", res);
           // Sets the user values after success login
           userFactory.setUser(res);
           $state.go("home");
+    };
 
+    $scope.backToHome = function () {
+      $state.go("home");
+    };
+
+    $scope.backToStart = function () {
+      $state.go("start");
+    };
+
+    $scope.createUser = function () {
+      $state.go("create_user");
+    };
+
+    $scope.logIn = function () {
+      $state.go("login");
+    };
+
+
+    $scope.newUser = function () {
+      console.log($scope.user.name);
+
+      $.ajax({
+        url: 'http://localhost:1337/users/create',
+        data: {
+          name: $scope.user.name,
+          email: $scope.user.email,
+          password: $scope.user.password,
+          telephone: $scope.user.telephone
+        },
+        crossDomain: true,
+        method: 'POST',
+        xhrFields: {
+           withCredentials: true
         }
+      })
 
-        $scope.backToStart = function () {
-            $state.go("start");
-        };
-
-        $scope.createUser = function () {
-            $state.go("create_user");
-        };
-
-        $scope.logIn = function () {
-            $state.go("login");
-        };
+    };
 
         $scope.submit_login = function () {
             //do log-in ajax call here
@@ -56,37 +72,6 @@
 
         };
 
-      $scope.newUser = function (){
-            // var data = $.param({
-            //     json: JSON.stringify({
-            //        name: $scope.user.name ,
-            //        email: $scope.user.email,
-            //        password: $scope.user.password,
-            //        telephone: $scope.user.telephone
-            //    })
-            // });
-
-            // $http.post('http://localhost:1337/users/create',data)
-            //     .success(function(data,status){
-            //         $scope.PostDataResponse = data;
-            // })
-            //     .error(function(res){
-            //        console.log(res);
-            //     });
-
-$.ajax({
-   url: 'http://localhost:1337/users/create',
-   data: {
-       name: $scope.user.name,
-       email: $scope.user.email,
-       password: $scope.user.password,
-       telephone: $scope.user.telephone
-   },
-   crossDomain: true,
-   method: 'POST'
-})
-
-};
 
 /* Example SMS Test */
 $scope.smsTest = function () {

@@ -20,34 +20,47 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
         };
 
         $scope.newUser = function (){
-            var data = $.param({
-                json: JSON.stringify({
-                   name: $scope.user.name ,
-                   email: $scope.user.email,
-                   password: $scope.user.password,
-                   telephone: $scope.user.telephone
-               })
-            });
+            // var data = $.param({
+            //     json: JSON.stringify({
+            //        name: $scope.user.name ,
+            //        email: $scope.user.email,
+            //        password: $scope.user.password,
+            //        telephone: $scope.user.telephone
+            //    })
+            // });
 
-            $http.post('http://localhost:1337/users/create',data)
-                .success(function(data,status){
-                    $scope.PostDataResponse = data;
-            })
-                .error(function(res){
-                   console.log(res);
-                });
+            // $http.post('http://localhost:1337/users/create',data)
+            //     .success(function(data,status){
+            //         $scope.PostDataResponse = data;
+            // })
+            //     .error(function(res){
+            //        console.log(res);
+            //     });
 
-        //$.ajax({
-        //    url: 'http://localhost:1337/users/create',
-        //    data: {
-        //        name: $scope.user.name,
-        //        email: $scope.user.email,
-        //        password: $scope.user.password,
-        //        telephone: $scope.user.telephone
-        //    },
-        //    crossDomain: true,
-        //    method: 'POST'
-        //})
+        $.ajax({
+           url: 'http://localhost:1337/users/create',
+           data: {
+               name: $scope.user.name,
+               email: $scope.user.email,
+               password: $scope.user.password,
+               telephone: $scope.user.telephone
+           },
+           crossDomain: true,
+           method: 'POST'
+        })
+
+
+        /* Hacky way to attempt to get it directly to post to /login */
+
+         $.ajax({
+           url: 'http://localhost:1337/login',
+           data: {
+               email: $scope.user.email,
+               password: $scope.user.password,
+           },
+           crossDomain: true,
+           method: 'POST'
+        })
 
     };
 

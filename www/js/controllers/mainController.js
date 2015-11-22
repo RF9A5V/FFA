@@ -36,93 +36,93 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
         };
 
         $scope.listings = [
-            {
-                title: "Macbook Pro 2014",
-                img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
-                description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
-                category: "3",
-                tags: ["Apple", "Laptop", "Macbook"],
-                contact: "Jason Chiu",
-                location: "UTC Portal",
-                likes: 5
-            },
-            {
-                title: "Macbook Pro 2014",
-                img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
-                description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
-                category: "3",
-                tags: ["Apple", "Laptop", "Macbook"],
-                contact: "Jason Chiu",
-                location: "UTC Portal",
-                likes: 5
-            },
-            {
-                title: 'hoho',
-                time: '2 minutes ago',
-                category: '2',
-                description: "I'm giving away nothing. Just posting for fun :P"
-            },
-            {
-                title: 'yolo',
-                time: '5 minutes ago',
-                category: '1',
-                description: 'These descriptions will probably be a lot longer or not...'
-            },
-            {
-                title: 'yolo',
-                time: '5 minutes ago',
-                category: '1',
-                description: 'These descriptions will probably be a lot longer or not...'
-            },
-            {
-                title: 'yolo',
-                time: '5 minutes ago',
-                category: '1',
-                description: 'These descriptions will probably be a lot longer or not...'
-            },
-            {
-                title: 'yolo',
-                time: '5 minutes ago',
-                category: '3',
-                description: 'These descriptions will probably be a lot longer or not...'
-            },
-            {
-                title: 'yolo',
-                time: '5 minutes ago',
-                category: '3',
-                description: 'These descriptions will probably be a lot longer or not...'
-            },
-            {
-                title: 'yolo',
-                time: '5 minutes ago',
-                category: '2',
-                description: 'These descriptions will probably be a lot longer or not...'
-            },
-            {
-                title: 'yolo',
-                time: '5 minutes ago',
-                category: '2',
-                description: 'These descriptions will probably be a lot longer or not...'
-            },
-            {
-                title: 'hello',
-                time: '5 minutes ago',
-                category: '3',
-                description: 'These descriptions will probably be a lot longer or not...'
-            }
+        {
+            title: "Macbook Pro 2014",
+            img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
+            description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
+            category: "3",
+            tags: ["Apple", "Laptop", "Macbook"],
+            contact: "Jason Chiu",
+            location: "UTC Portal",
+            likes: 5
+        },
+        {
+            title: "Macbook Pro 2014",
+            img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
+            description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
+            category: "3",
+            tags: ["Apple", "Laptop", "Macbook"],
+            contact: "Jason Chiu",
+            location: "UTC Portal",
+            likes: 5
+        },
+        {
+            title: 'hoho',
+            time: '2 minutes ago',
+            category: '2',
+            description: "I'm giving away nothing. Just posting for fun :P"
+        },
+        {
+            title: 'yolo',
+            time: '5 minutes ago',
+            category: '1',
+            description: 'These descriptions will probably be a lot longer or not...'
+        },
+        {
+            title: 'yolo',
+            time: '5 minutes ago',
+            category: '1',
+            description: 'These descriptions will probably be a lot longer or not...'
+        },
+        {
+            title: 'yolo',
+            time: '5 minutes ago',
+            category: '1',
+            description: 'These descriptions will probably be a lot longer or not...'
+        },
+        {
+            title: 'yolo',
+            time: '5 minutes ago',
+            category: '3',
+            description: 'These descriptions will probably be a lot longer or not...'
+        },
+        {
+            title: 'yolo',
+            time: '5 minutes ago',
+            category: '3',
+            description: 'These descriptions will probably be a lot longer or not...'
+        },
+        {
+            title: 'yolo',
+            time: '5 minutes ago',
+            category: '2',
+            description: 'These descriptions will probably be a lot longer or not...'
+        },
+        {
+            title: 'yolo',
+            time: '5 minutes ago',
+            category: '2',
+            description: 'These descriptions will probably be a lot longer or not...'
+        },
+        {
+            title: 'hello',
+            time: '5 minutes ago',
+            category: '3',
+            description: 'These descriptions will probably be a lot longer or not...'
+        }
 
         ];
 
         $scope.createListing = function () {
             console.log($scope.item);
-            $http({
-                method: 'POST',
-                data: {
-                    name: $scope.item.title ,
-                    description: $scope.item.description
-                }
-            });
-            //TODO: save the data here
+            // $http({
+            //     method: 'POST',
+            //     data: {
+            //         name: $scope.item.title ,
+            //         description: $scope.item.description
+            //     }
+            // });
+            // //TODO: save the data here
             confirmCreate();
         };
 
@@ -154,6 +154,20 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             });
             confirmPopup.then(function (res) {
                 if(res){
+
+                    $.ajax({
+                        url: 'http://localhost:1337/items/create',
+                        data: {
+                            name: "Test Data",
+                            description: "asdfasdf",
+                            location: "Stridddddng",
+                            category: "Strinffffg",
+                            is_taken: false,
+                        },
+                        crossDomain: true,
+                        method: 'POST'
+                    })
+
                     $scope.create_listing_modal.hide();
                     $scope.item = {
                         title: "",
@@ -169,6 +183,6 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                     console.log("no action taken");
                 }
             });
-        };
+};
 
-    }]);
+}]);

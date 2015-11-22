@@ -1,27 +1,15 @@
-ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModal', '$http', 'userFactory',
-    function ($scope, $state, $ionicPopup, $ionicModal, $http, userFactory) {
+ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModal', '$http', '$timeout', 'userFactory',
+    function ($scope, $state, $ionicPopup, $ionicModal, $http, $timeout, userFactory) {
 
     //Retrieves current user
     var currUser = {};
-
-    $scope.showListings = true;
-
-    $scope.show_listings = function (){
-        $scope.showListings = true;
-        $scope.showWishlist = false;
-    };
-
-    $scope.show_wishlist = function () {
-        $scope.showListings = false;
-        $scope.showWishlist = true;
-    };
 
     $scope.selected_item = {
         title: "Macbook Pro 2014",
         img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
         description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
         category: "3",
-        tags: ["Apple", "Laptop", "Macbook"],
+        tags: "#Apple#Laptop#Macbook",
         contact: "Jason Chiu",
         location: "UTC Portal",
         likes: 5
@@ -32,13 +20,13 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
         img: "",
         description: "",
         category: "",
-        tags: [],
+        tags: "",
         contact: "",
         location: "",
         likes: ""
     };
 
-    $scope.listings = [];
+
 
     // $scope.listings = [
     //     {
@@ -120,6 +108,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
     $scope.createListing = function () {
         // console.log($scope.item);
+        // $scope.currUser      = userFactory.getUser();
         $scope.currUser      = userFactory.getUser();
         console.log($scope.currUser)
         console.log("User phone number: ", $scope.currUser.telephone);
@@ -159,13 +148,23 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
              },
              success: function(res){
                 console.log(res);
+                $scope.listings = res;
              }
             // success: $scope.sendConfirmationSMS(interestMSG)
          });
         
 
-
     }
+
+    $scope.doRefresh = function() {
+        $scope.getAllObjects();
+        $scope.$broadcast('scroll.refreshComplete');
+        $scope.$apply();
+    };
+
+    $timeout(function() {
+            console.log($scope.listings);
+        }, 500);
 
     console.log($scope.getAllObjects()); 
 
@@ -202,6 +201,8 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
         });
     };
 
+
+
     var confirmCreate = function(){
         var confirmPopup = $ionicPopup.confirm({
             title: "Creating",
@@ -214,6 +215,10 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             $scope.currUser      = userFactory.getUser();
             var confirmMSG = "Thank you, " + $scope.currUser.name + " for using Free for Everyone! Your item has been publically listed."
             // $scope.sendConfirmationSMS(confirmMSG);
+
+                console.log($scope.item.tags);
+            var splitTags = $scope.item.tags.toString().split('#');
+
             $.ajax({
                 url: 'http://localhost:1337/items/create',
                 data: { // TODO: Replace with actual fucking data
@@ -221,7 +226,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                     description: $scope.item.description,
                     location: $scope.item.location,
                     category: $scope.item.category,
-                    tags: $scope.item.split("#"),
+                    tags: splitTags,
                     is_taken: false
                 },
                 crossDomain: true,
@@ -240,7 +245,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                 img: "",
                 description: "",
                 category: "",
-                tags: [],
+                tags: "",
                 contact: "",
                 location: "",
                 likes: ""

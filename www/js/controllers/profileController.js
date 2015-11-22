@@ -2,10 +2,15 @@
  * Created by Leslie on 11/21/2015.
  */
 
-ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicModal', function ($scope, $state, $ionicPopup, $ionicModal) {
+ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicModal', 'userFactory',
+    function ($scope, $state, $ionicPopup, $ionicModal, userFactory) {
   $scope.showWishlist = false;
   $scope.showListings = true;
   $scope.showAdd = false;
+
+  //Retrieves current user
+    $scope.currUser = userFactory.getUser();
+    console.log($scope.currUser);
 
   $scope.toggleShowAdd = function () {
     $scope.showAdd = !$scope.showAdd;
@@ -21,54 +26,78 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         $scope.showWishlist = true;
     };
 
-    $scope.listings = [
-        {
-            title: 'lol',
-            category: '2',
-            time: '6 seconds ago',
-            description: 'Air that is easily breathable',
-            tags:'test',
-            contact: 'Jason Chiu',
-            location: 'esports arena'
+    $scope.listings = [];
 
-        },
-        {
-            title: 'pop',
-            time: '46 seconds ago',
-            description: 'A free white box in wonderful condition!'
-        },
-        {
-            title: 'hoho',
-            time: '2 minutes ago',
-            description: "I'm giving away nothing. Just posting for fun :P"
-        },
-        {
-            title: 'yolo',
-            time: '5 minutes ago',
-            description: 'These descriptions will probably be a lot longer or not...'
-        },
-        {
-            title: 'yolo',
-            time: '5 minutes ago',
-            description: 'These descriptions will probably be a lot longer or not...'
-        },
-        {
-            title: 'yolo',
-            time: '5 minutes ago',
-            description: 'These descriptions will probably be a lot longer or not...'
-        },
-        {
-            title: 'yolo',
-            time: '5 minutes ago',
-            description: 'These descriptions will probably be a lot longer or not...'
-        },
-        {
-            title: 'yolo',
-            time: '5 minutes ago',
-            description: 'These descriptions will probably be a lot longer or not...'
-        }
+    $scope.getMyObjects = function () {
+            currUser = userFactory.getUser();
+            console.log($scope.currUser);
 
-    ];
+          $.ajax({
+                url: 'http://localhost:1337/items',
+                crossDomain: true,
+                method: 'GET',
+                xhrFields: {
+                 withCredentials: true
+             },
+             success: function(res){
+                console.log(res);
+                $scope.listings = res;
+             }
+            // success: $scope.sendConfirmationSMS(interestMSG)
+         });
+    }
+
+
+    $scope.getMyObjects();
+
+    // $scope.listings = [
+    //     {
+    //         title: 'lol',
+    //         category: '2',
+    //         time: '6 seconds ago',
+    //         description: 'Air that is easily breathable',
+    //         tags:'test',
+    //         contact: 'Jason Chiu',
+    //         location: 'esports arena'
+
+    //     },
+    //     {
+    //         title: 'pop',
+    //         time: '46 seconds ago',
+    //         description: 'A free white box in wonderful condition!'
+    //     },
+    //     {
+    //         title: 'hoho',
+    //         time: '2 minutes ago',
+    //         description: "I'm giving away nothing. Just posting for fun :P"
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     }
+
+    // ];
     $scope.logOut = function (){
         $.ajax({
             url: "http://localhost:1337/login/destroy",
@@ -160,6 +189,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
 
     $scope.doRefresh = function () {
         //TODO: get new favorite posts and shares
+        $scope.getMyObjects();
         $scope.$broadcast('scroll.refreshComplete');
     };
 

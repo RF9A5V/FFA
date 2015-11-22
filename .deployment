@@ -1,2 +1,2 @@
 [config]
-command = npm install
+command = npm install && ionic serve

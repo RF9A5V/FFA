@@ -42,8 +42,6 @@
                success: $scope.backToHome()
                           })
 
-<<<<<<< HEAD
-
         };
 
       $scope.newUser = function (){
@@ -76,39 +74,9 @@ $.ajax({
    method: 'POST'
 })
 
-
-/* Hacky way to attempt to get it directly to post to /login */
-
-$.ajax({
-   url: 'http://localhost:1337/login',
-   data: {
-       email: $scope.user.email,
-       password: $scope.user.password,
-   },
-   crossDomain: true,
-   method: 'POST'
-})
-
 };
 
 $scope.smsTest = function () {
-=======
-            $.ajax({
-                url: 'http://localhost:1337/users/create',
-                data: {
-                    name: $scope.user.name,
-                    email: $scope.user.email,
-                    password: $scope.user.password,
-                    telephone: $scope.user.telephone
-                },
-                crossDomain: true,
-                method: 'POST'
-            })
-
-        };
-
-        $scope.smsTest = function () {
->>>>>>> d65bc93cdec96397cff92adb8a8f9ea55daef0b3
             // use $.param jQuery function to serialize data from JSON
             var data = $.param({
                 "call": {

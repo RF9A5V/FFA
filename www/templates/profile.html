@@ -50,7 +50,7 @@
         </div>
 
 
-        <div class="card card-wrapper2" ng-show="showWishlist">
+        <div class="card card-wrapper2" ng-show="showWishlist" >
             <div class="list" ng-show="showAdd">
               <div class="item item-input-inset">
                 <label class="item-input-wrapper">
@@ -63,13 +63,12 @@
             </div>
             <ion-scroll class="xcard2scroll">
 
-                <!--<ion-refresher-->
-                        <!--pulling-text="Pull to refresh..."-->
-                        <!--on-refresh="doRefresh()">-->
-                <!--</ion-refresher>-->
+                <ion-refresher
+                        pulling-text="Pull to refresh..."
+                        on-refresh="doRefresh()">
+                </ion-refresher>
 
                 <ion-list class="list"
-                          ng-controller="profileController"
                           show-delete="shouldShowDelete"
                           show-reorder="shouldShowReorder"
                           can-swipe="listCanSwipe">

@@ -25,8 +25,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             $scope.showWishlist = true;
         };
 
-        $scope.listings = [];
-
+        $scope.listings=[];
         $scope.getMyObjects = function () {
             currUser = userFactory.getUser();
 
@@ -44,7 +43,6 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
                 // success: $scope.sendConfirmationSMS(interestMSG)
             });
         }
-
 
         $scope.addTag = function (tag) {
             console.log(tag);
@@ -322,6 +320,27 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
 
         $scope.updateItem = function (data) {
             // TODO: save the updated object
+            var splitTags = $scope.selectedItem.tags.toString().split('#');
+            splitTags.clean();
+            $.ajax({
+                url: 'http://localhost:1337/items/edit/' + $scope.selectedItem._id,
+                data: { // TODO: Replace with actual fucking data
+                  title: $scope.selectedItem.title,
+                  description: $scope.selectedItem.description,
+                  location: $scope.selectedItem.location,
+                  category: $scope.selectedItem.category,
+                  tags: splitTags,
+                  is_taken: false
+                },
+                crossDomain: true,
+                method: 'POST',
+                xhrFields: {
+                  withCredentials: true
+                },
+                // success: $scope.sendConfirmationSMS(confirmMSG)
+                success: $scope.listings.push($scope.item)
+              }
+            );
             $scope.modify_listing_modal.hide();
         };
 

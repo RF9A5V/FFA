@@ -33,13 +33,20 @@
               </ion-refresher>
               <ion-list class="list" can-swipe="true">
                 <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings"
-                          ng-click="showDetail(listing)">
+                          ng-click="modifyItem(listing)">
+                  <img ng-if="listing.category == 'Food'"src="../img/food_thumbnail.jpg">
+                  <img ng-if="listing.category == 'Furniture'"src="../img/furniture_thumbnail.jpg">
+                  <img ng-if="listing.category == 'Electronic'"src="../img/electronics_thumbnail.jpg">
                   <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
 
                   <h2><b>{{listing.title}}</b></h2>
 
-                  <h3>{{listing.description | limitTo: 40}}
-                    {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
+                  <h3>{{listing.description | limitTo: 50}}
+                    {{listing.description.length > 50 ? '&hellip;' : ''}}</h3>
+
+                  <ion-option-button class="button button-assertive" ng-click="delete_listing(listing)">
+                    Delete
+                  </ion-option-button>
                   <label>
                     <a class="subdued">5 interested</a>
                   </label>

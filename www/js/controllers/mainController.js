@@ -21,7 +21,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
 
     $scope.getAllObjects = function () {
       $.ajax({
-        url: 'http://localhost:1337/items',
+        url: 'http://ffe-api-reboot.mybluemix.net/items',
         crossDomain: true,
         method: 'GET',
         xhrFields: {
@@ -99,7 +99,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
           splitTags.clean();
 
           $.ajax({
-              url: 'http://localhost:1337/items/create',
+              url: 'http://ffe-api-reboot.mybluemix.net/items/create',
               data: { // TODO: Replace with actual fucking data
                 title: $scope.item.title,
                 description: $scope.item.description,
@@ -141,7 +141,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
       var interestMSG = "Hello," + $scope.currUser.name + " for using Free for Everyone! You have been subscribed to ___ "
       // Send a post request to this route to be handled.
       $.ajax({
-        url: 'http://localhost:1337/items/like/5651899fdc35e21902f6564a',
+        url: 'http://ffe-api-reboot.mybluemix.net/items/like/',
         data: {
           name: $scope.selected_item.title,
           description: "This is a test interest",
@@ -161,7 +161,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
 
     $scope.logOut = function () {
       $.ajax({
-        url: "http://localhost:1337/login/destroy",
+        url: "http://ffe-api-reboot.mybluemix.net/login/destroy",
         crossDomain: true,
         method: 'POST',
         xhrFields: {

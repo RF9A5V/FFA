@@ -61,7 +61,7 @@ ffe.run(['$state', '$rootScope', function ($state, $rootScope) {
     $rootScope.$on("$stateChangeStart", function (event, toState, current) {
         //if there isn't a user logged in to Parse, and if the state they're going to is login pages, let them go to login.
         $.ajax({
-            url: "http://localhost:1337/users/validate",
+            url: "http://ffe-api-reboot.mybluemix.net/users/validate",
             success: function(data, text, jq){
                 console.log("WTFFFFFFFFFF",data.uid);
                 if(data.uid == undefined){

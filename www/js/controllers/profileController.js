@@ -31,7 +31,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             currUser = userFactory.getUser();
 
             $.ajax({
-                url: 'http://localhost:1337/items',
+                url: 'http://ffe-api-reboot.mybluemix.net/items',
                 crossDomain: true,
                 method: 'GET',
                 xhrFields: {
@@ -141,7 +141,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         // ];
         $scope.logOut = function () {
             $.ajax({
-                url: "http://localhost:1337/login/destroy",
+                url: "http://ffe-api-reboot.mybluemix.net/login/destroy",
                 crossDomain: true,
                 method: 'POST',
                 xhrFields: {
@@ -164,7 +164,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         var actualAdd = function (tag, id) {
             console.log(tag, id);
             $.ajax({
-                url: 'http://localhost:1337/users/wishlist/add/' + id,
+                url: 'http://ffe-api-reboot.mybluemix.net/users/wishlist/add/' + id,
                 data: {
                     tag: tag
                 },

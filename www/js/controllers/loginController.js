@@ -35,7 +35,7 @@ ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
             console.log($scope.user.name);
 
             $.ajax({
-                url: 'http://localhost:1337/users/create',
+                url: 'http://ffe-api-reboot.mybluemix.net/users/create',
                 data: {
                     name: $scope.user.name,
                     email: $scope.user.email,
@@ -49,7 +49,7 @@ ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
                 }
             });
             $.ajax({
-                url: 'http://localhost:1337/login',
+                url: 'http://ffe-api-reboot.mybluemix.net/login',
                 data: {
                     email: $scope.user.email,
                     password: $scope.user.password,
@@ -74,7 +74,7 @@ ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
             console.log("User:" + $scope.user.email);
 
             $.ajax({
-                url: 'http://localhost:1337/login',
+                url: 'http://ffe-api-reboot.mybluemix.net/login',
                 data: {
                     email: $scope.user.email,
                     password: $scope.user.password,

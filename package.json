@@ -3,6 +3,8 @@
   "version": "1.1.1",
   "description": "FFA: An Ionic project",
   "dependencies": {
+    "cordova": "*",
+    "ionic": "*",
     "after-all": "^2.0.2",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",

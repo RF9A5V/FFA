@@ -47,7 +47,7 @@
                             </ion-refresher>
 
                             <ion-list class="list" can-swipe="true">
-                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'1'}"
+                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'Food'}"
                                           ng-click="showDetail(listing)">
                                     <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
 
@@ -73,7 +73,7 @@
                             </ion-refresher>
 
                             <ion-list class="list" can-swipe="true">
-                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'2'}"
+                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'Furniture'}"
                                           ng-click="showDetail(listing)">
                                     <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
 
@@ -99,7 +99,7 @@
                             </ion-refresher>
 
                             <ion-list class="list" can-swipe="listCanSwipe">
-                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'3'}"
+                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'Electronic'}"
                                           ng-click="showDetail(listing)">
                                     <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
 

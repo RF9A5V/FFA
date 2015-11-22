@@ -70,24 +70,27 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
 
     ];
 
+    $scope.newWish = '';
+
     $scope.wishlist = [
         {
             title: '#PS4',
-            time: 'Electronics'
         },
         {
             title: '#OldTV',
-            time: 'Electronics'
         },
         {
             title: '#OatmealRaisinCookies',
-            time: 'Food'
         },
         {
             title: '#Couch #Sofa',
-            time: 'Furniture'
         }
     ];
+
+    $scope.addTag = function (tag){
+        console.log(tag);
+        $scope.wishlist.push({title:"#"+tag});
+    };
 
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;

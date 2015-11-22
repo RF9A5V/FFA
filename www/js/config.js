@@ -14,6 +14,12 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             controller: "profileController"
         };
 
+        var start = {
+            url: '/start',
+            templateUrl: "templates/start.html",
+            controller: "loginController"
+        };
+
         var login = {
             url: '/login',
             templateUrl: "templates/login.html",
@@ -38,15 +44,14 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         //    controller: 'listingController'
         //};
 
+        $stateProvider.state('start', start);
         $stateProvider.state('login', login);
         $stateProvider.state('home', home);
         $stateProvider.state('profile', profile);
         $stateProvider.state('create_user', create_user);
         $stateProvider.state('verification', verification);
 
-
-
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/start');
 
         //$ionicConfigProvider.tabs.position('bottom');
         $ionicConfigProvider.navBar.alignTitle('center');

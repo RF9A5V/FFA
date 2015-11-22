@@ -1,47 +1,25 @@
-<head>
+<ion-view view-title="Login">
+  <ion-header-bar class="bar bar-header bar-dark">
+    <button ng-click="backToStart()" class="button back-button buttons button-clear header-item">
+      <i class="icon ion-chevron-left"></i>
+      <span style="transform: translate3d(0px, 0px, 0px); color: white;">Back</span>
+    </button>
+    <h1 class="title">Free For Everyone</h1>
+  </ion-header-bar>
 
-	<meta name="google-signin-client_id" content="63180758899-vrlmcntv7veaercnu66cts55876pg8dj.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-</head>
+  <ion-content>
+    <form class="item no-pad">
+      <label class="item item-input">
+        <input type="text" placeholder="Email" ng-model="user.email">
+      </label>
 
-<body>
-	<ion-view view-title="Login">
+      <label class="item item-input">
+        <input type="text" placeholder="Password" ng-model="user.password">
+      </label>
 
-		<ion-content>
-
-			<div class="bar bar-header bar-dark">
-  				<h1 class="title">Free For Everyone</h1>
-			</div>
-
-			<div id="login-frame">
-				<div class="img-border">
-					<img src="http://andrefrommalta.com/wp-content/uploads/2014/09/137392976177.jpg"/>
-				</div>		
-			</div>
-			<div id="login-text">
-				<div class="bar">
-  					<h1 class="title">There's always something for everyone.
-  					</h1>
-				</div>
-			</div>
-			
-
-			<div id="login-button-container">
-				<button class="button button-dark" ng-click="createUser()">
-			  		Let's begin
-				</button>
-				<br>
-				<button class="button button-assertive" ng-click="smsTest()">
-			  		Contact Us
-				</button>
-			</div>
-
-
-
-		</ion-content>
-
-	</ion-view>
-
-
-
-</body>
+      <button type="submit" ng-click="submit_login()" class="button button-block button-dark cancel-overflow">
+        Log In
+      </button>
+    </form>
+  </ion-content>
+</ion-view>

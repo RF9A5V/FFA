@@ -1,218 +1,215 @@
 <ion-nav-view class="home">
-    <div>
-        <ion-header-bar align-title="center" class="bar-light">
+  <ion-header-bar align-title="center" class="bar-light">
 
-            <div class="buttons">
-                <a class="button button-clear icon ion-navicon-round" ng-click="goProfile()"></a>
-            </div>
-            <h1 class="title">Free for Everyone</h1>
-
-            <div class="buttons">
-                <a class="button button-clear cancel-overflow icon ion-compose" ng-click="create_listing_modal.show()"></a>
-            </div>
-
-        </ion-header-bar>
-
+    <div class="buttons">
+      <a class="button button-clear icon ion-navicon-round" ng-click="goProfile()"></a>
     </div>
+    <h1 class="title">Free for Everyone</h1>
 
-    <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-light">
-        <ion-tab title="FFE" on-select="filter_all()">
-          <ion-view title="food">
-            <ion-content class="padding">
+    <div class="buttons">
+      <a class="button button-clear cancel-overflow icon ion-compose" ng-click="create_listing_modal.show()"></a>
+    </div>
+  </ion-header-bar>
 
-                <ion-refresher
-                        pulling-text="Pull to refresh..."
-                        on-refresh="doRefresh()">
-                </ion-refresher>
+  <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-light">
+    <ion-tab title="FFE" on-select="filter_all()">
+      <ion-view title="food">
+        <ion-content class="padding">
 
-                <ion-list class="list"
-                          ng-controller="mainController"
-                          show-delete="shouldShowDelete"
-                          show-reorder="shouldShowReorder"
-                          can-swipe="listCanSwipe">
-                    <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings" ng-click="listing_details_modal.show()">
-                        <!--<div class="item item-body">-->
-                        <!--<button class="button"><i class="icon ion-close"></i></button>-->
+          <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+          </ion-refresher>
 
-                        <!--<button class="button button-clear" ng-click="interestPost()">-->
-                          <!--<i class="icon ion-heart assertive"></i>-->
-                        <!--</button>-->
+          <ion-list class="list"
+                    ng-controller="mainController"
+                    show-delete="shouldShowDelete"
+                    show-reorder="shouldShowReorder"
+                    can-swipe="listCanSwipe">
+            <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings"
+                      ng-click="listing_details_modal.show()">
+              <!--<div class="item item-body">-->
+              <!--<button class="button"><i class="icon ion-close"></i></button>-->
+              <h4>Posted: {{listing.time}}</h4>
 
-                        <h4>Posted: {{listing.time}}</h4>
-                        <h2><b>{{listing.title}}</b></h2>
+              <h2><b>{{listing.title}}</b></h2>
 
-                        <h3>{{listing.description | limitTo: 40}}
-                        {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
-                        <label>
-                            <a class="subdued">5 interested</a>
-                        </label>
+              <h3>{{listing.description | limitTo: 40}}
+                {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
+              <label>
+                <a class="subdued">5 interested</a>
+              </label>
 
-                        <ion-option-button class="button-assertive"
-                                           ng-click="delete_listing(listing)">
-                            Delete
-                        </ion-option-button>
-                        <!--</div>-->
-                    </ion-item>
-                    <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
-                    <!--<a class="tab-item" href="#">-->
-                    <!--<i class="icon ion-ios-star-outline"></i>-->
-                    <!--Favorite-->
-                    <!--</a>-->
-                    <!--</div>-->
+              <ion-option-button class="button-assertive"
+                                 ng-click="delete_listing(listing)">
+                Delete
+              </ion-option-button>
+              <!--</div>-->
+            </ion-item>
+            <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
+            <!--<a class="tab-item" href="#">-->
+            <!--<i class="icon ion-ios-star-outline"></i>-->
+            <!--Favorite-->
+            <!--</a>-->
+            <!--</div>-->
 
-                </ion-list>
-                <ion-infinite-scroll
-                        on-infinite="loadMore()"
-                        distance="1%">
-                </ion-infinite-scroll>
-                <!--</div>-->
-            </ion-content>
-          </ion-view>
-        </ion-tab>
+          </ion-list>
+          <ion-infinite-scroll
+            on-infinite="loadMore()"
+            distance="1%">
+          </ion-infinite-scroll>
+          <!--</div>-->
+        </ion-content>
+      </ion-view>
+    </ion-tab>
 
-        <ion-tab title="Food" on-select="filter_food()">
-            <ion-view title="food">
-              <ion-content class="padding">
-                  <ion-refresher
-                          pulling-text="Pull to refresh..."
-                          on-refresh="doRefresh()">
-                  </ion-refresher>
+    <ion-tab title="Food" on-select="filter_food()">
+      <ion-view title="food">
+        <ion-content class="padding">
+          <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+          </ion-refresher>
 
-                  <ion-list class="list"
-                            ng-controller="mainController"
-                            show-delete="shouldShowDelete"
-                            show-reorder="shouldShowReorder"
-                            can-swipe="listCanSwipe">
-                      <ion-item class="item-thumbnail-left" ng-repeat="listing in listings | filter:{category:'1'}" ng-click="listing_details_modal.show()">
-                          <!--<div class="item item-body">-->
-                          <!--<button class="button"><i class="icon ion-close"></i></button>-->
-                          <h4>Posted: {{listing.time}}</h4>
+          <ion-list class="list"
+                    ng-controller="mainController"
+                    show-delete="shouldShowDelete"
+                    show-reorder="shouldShowReorder"
+                    can-swipe="listCanSwipe">
+            <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'1'}"
+                      ng-click="listing_details_modal.show()">
+              <!--<div class="item item-body">-->
+              <!--<button class="button"><i class="icon ion-close"></i></button>-->
+              <h4>Posted: {{listing.time}}</h4>
 
-                          <h2><b>{{listing.title}}</b></h2>
+              <h2><b>{{listing.title}}</b></h2>
 
-                          <h3>{{listing.description | limitTo: 40}}
-                          {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
-                          <label>
-                              <a class="subdued">5 interested</a>
-                          </label>
+              <h3>{{listing.description | limitTo: 40}}
+                {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
+              <label>
+                <a class="subdued">5 interested</a>
+              </label>
 
-                          <ion-option-button class="button-assertive"
-                                             ng-click="delete_listing(listing)">
-                              Delete
-                          </ion-option-button>
-                          <!--</div>-->
-                      </ion-item>
-                      <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
-                      <!--<a class="tab-item" href="#">-->
-                      <!--<i class="icon ion-ios-star-outline"></i>-->
-                      <!--Favorite-->
-                      <!--</a>-->
-                      <!--</div>-->
+              <ion-option-button class="button-assertive"
+                                 ng-click="delete_listing(listing)">
+                Delete
+              </ion-option-button>
+              <!--</div>-->
+            </ion-item>
+            <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
+            <!--<a class="tab-item" href="#">-->
+            <!--<i class="icon ion-ios-star-outline"></i>-->
+            <!--Favorite-->
+            <!--</a>-->
+            <!--</div>-->
 
-                  </ion-list>
-                  <ion-infinite-scroll
-                          on-infinite="loadMore()"
-                          distance="1%">
-                  </ion-infinite-scroll>
-              </ion-content>
-            </ion-view>
-        </ion-tab>
+          </ion-list>
+          <ion-infinite-scroll
+            on-infinite="loadMore()"
+            distance="1%">
+          </ion-infinite-scroll>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
 
-        <ion-tab title="Furniture" on-select="filter_furniture()">
-            <ion-view title="food">
-              <ion-content class="padding">
-                  <ion-refresher
-                          pulling-text="Pull to refresh..."
-                          on-refresh="doRefresh()">
-                  </ion-refresher>
+    <ion-tab title="Furniture" on-select="filter_furniture()">
+      <ion-view title="food">
+        <ion-content class="padding">
+          <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+          </ion-refresher>
 
-                  <ion-list class="list"
-                            ng-controller="mainController"
-                            show-delete="shouldShowDelete"
-                            show-reorder="shouldShowReorder"
-                            can-swipe="listCanSwipe">
-                      <ion-item class="item-thumbnail-left" ng-repeat="listing in listings | filter:{category:'2'}" ng-click="listing_details_modal.show()">
-                          <!--<div class="item item-body">-->
-                          <!--<button class="button"><i class="icon ion-close"></i></button>-->
-                          <h4>Posted: {{listing.time}}</h4>
+          <ion-list class="list"
+                    ng-controller="mainController"
+                    show-delete="shouldShowDelete"
+                    show-reorder="shouldShowReorder"
+                    can-swipe="listCanSwipe">
+            <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'2'}"
+                      ng-click="listing_details_modal.show()">
+              <!--<div class="item item-body">-->
+              <!--<button class="button"><i class="icon ion-close"></i></button>-->
+              <h4>Posted: {{listing.time}}</h4>
 
-                          <h2><b>{{listing.title}}</b></h2>
+              <h2><b>{{listing.title}}</b></h2>
 
-                          <h3>{{listing.description | limitTo: 40}}
-                          {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
-                          <label>
-                              <a class="subdued">5 interested</a>
-                          </label>
+              <h3>{{listing.description | limitTo: 40}}
+                {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
+              <label>
+                <a class="subdued">5 interested</a>
+              </label>
 
-                          <ion-option-button class="button-assertive"
-                                             ng-click="delete_listing(listing)">
-                              Delete
-                          </ion-option-button>
-                          <!--</div>-->
-                      </ion-item>
-                      <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
-                      <!--<a class="tab-item" href="#">-->
-                      <!--<i class="icon ion-ios-star-outline"></i>-->
-                      <!--Favorite-->
-                      <!--</a>-->
-                      <!--</div>-->
+              <ion-option-button class="button-assertive"
+                                 ng-click="delete_listing(listing)">
+                Delete
+              </ion-option-button>
+              <!--</div>-->
+            </ion-item>
+            <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
+            <!--<a class="tab-item" href="#">-->
+            <!--<i class="icon ion-ios-star-outline"></i>-->
+            <!--Favorite-->
+            <!--</a>-->
+            <!--</div>-->
 
-                  </ion-list>
-                  <ion-infinite-scroll
-                          on-infinite="loadMore()"
-                          distance="1%">
-                  </ion-infinite-scroll>              </ion-content>
-            </ion-view>
-        </ion-tab>
+          </ion-list>
+          <ion-infinite-scroll
+            on-infinite="loadMore()"
+            distance="1%">
+          </ion-infinite-scroll>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
 
-        <ion-tab title="Electronics" on-select="filter_electronics()">
-            <ion-view title="food">
-              <ion-content class="padding">
-                  <ion-refresher
-                          pulling-text="Pull to refresh..."
-                          on-refresh="doRefresh()">
-                  </ion-refresher>
+    <ion-tab title="Electronics" on-select="filter_electronics()">
+      <ion-view title="food">
+        <ion-content class="padding">
+          <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+          </ion-refresher>
 
-                  <ion-list class="list"
-                            ng-controller="mainController"
-                            show-delete="shouldShowDelete"
-                            show-reorder="shouldShowReorder"
-                            can-swipe="listCanSwipe">
-                      <ion-item class="item-thumbnail-left" ng-repeat="listing in listings | filter:{category:'3'}" ng-click="listing_details_modal.show()">
-                          <!--<div class="item item-body">-->
-                          <!--<button class="button"><i class="icon ion-close"></i></button>-->
-                          <h4>Posted: {{listing.time}}</h4>
+          <ion-list class="list"
+                    ng-controller="mainController"
+                    show-delete="shouldShowDelete"
+                    show-reorder="shouldShowReorder"
+                    can-swipe="listCanSwipe">
+            <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'3'}"
+                      ng-click="listing_details_modal.show()">
+              <!--<div class="item item-body">-->
+              <!--<button class="button"><i class="icon ion-close"></i></button>-->
+              <h4>Posted: {{listing.time}}</h4>
 
-                          <h2><b>{{listing.title}}</b></h2>
+              <h2><b>{{listing.title}}</b></h2>
 
-                          <h3>{{listing.description | limitTo: 40}}
-                          {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
-                          <label>
-                              <a class="subdued">5 interested</a>
-                          </label>
+              <h3>{{listing.description | limitTo: 40}}
+                {{listing.description.length > 40 ? '&hellip;' : ''}}</h3>
+              <label>
+                <a class="subdued">5 interested</a>
+              </label>
 
-                          <ion-option-button class="button-assertive"
-                                             ng-click="delete_listing(listing)">
-                              Delete
-                          </ion-option-button>
-                          <!--</div>-->
-                      </ion-item>
-                      <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
-                      <!--<a class="tab-item" href="#">-->
-                      <!--<i class="icon ion-ios-star-outline"></i>-->
-                      <!--Favorite-->
-                      <!--</a>-->
-                      <!--</div>-->
+              <ion-option-button class="button-assertive"
+                                 ng-click="delete_listing(listing)">
+                Delete
+              </ion-option-button>
+              <!--</div>-->
+            </ion-item>
+            <!--<div class="item tabs tabs-secondary tabs-icon-left">-->
+            <!--<a class="tab-item" href="#">-->
+            <!--<i class="icon ion-ios-star-outline"></i>-->
+            <!--Favorite-->
+            <!--</a>-->
+            <!--</div>-->
 
-                  </ion-list>
-                  <ion-infinite-scroll
-                          on-infinite="loadMore()"
-                          distance="1%">
-                  </ion-infinite-scroll>
-              </ion-content>
-            </ion-view>
-        </ion-tab>
-    </ion-tabs>
+          </ion-list>
+          <ion-infinite-scroll
+            on-infinite="loadMore()"
+            distance="1%">
+          </ion-infinite-scroll>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+  </ion-tabs>
 
 
 </ion-nav-view>

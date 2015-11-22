@@ -166,7 +166,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                         },
                         crossDomain: true,
                         method: 'POST'
-                    })
+                    });
 
                     $scope.create_listing_modal.hide();
                     $scope.item = {

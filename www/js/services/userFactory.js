@@ -3,11 +3,13 @@ ffe.factory('userFactory', function() {
   var service = {};
 
   service.getUser = function () {
-    return user;
+  	console.log("Returning user with #: ", this.user);
+    return this.user;
   };
 
   service.setUser = function (user) {
     this.user = user;
+    console.log("Setting user", this.user);
   };
 
   return service;

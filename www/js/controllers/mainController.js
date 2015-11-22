@@ -38,83 +38,85 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
         likes: ""
     };
 
-    $scope.listings = [
-    {
-        title: "Macbook Pro 2020",
-        img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
-        description: "HDD:256GB SSD/ RAM:8GB/ Retina Display / And your mom.",
-        category: "3",
-        tags: ["Apple", "Laptop", "Macbook", "GitFukinRekt"],
-        contact: "Jason Chiu",
-        location: "UTC Portal",
-        likes: 50
-    },
-    {
-        title: "Macbook Pro 2014",
-        img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
-        description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
-        category: "3",
-        tags: ["Apple", "Laptop", "Macbook"],
-        contact: "Jason Chiu",
-        location: "UTC Portal",
-        likes: 5
-    },
-    {
-        title: 'hoho',
-        time: '2 minutes ago',
-        category: '2',
-        description: "I'm giving away nothing. Just posting for fun :P"
-    },
-    {
-        title: 'yolo',
-        time: '5 minutes ago',
-        category: '1',
-        description: 'These descriptions will probably be a lot longer or not...'
-    },
-    {
-        title: 'yolo',
-        time: '5 minutes ago',
-        category: '1',
-        description: 'These descriptions will probably be a lot longer or not...'
-    },
-    {
-        title: 'yolo',
-        time: '5 minutes ago',
-        category: '1',
-        description: 'These descriptions will probably be a lot longer or not...'
-    },
-    {
-        title: 'yolo',
-        time: '5 minutes ago',
-        category: '3',
-        description: 'These descriptions will probably be a lot longer or not...'
-    },
-    {
-        title: 'yolo',
-        time: '5 minutes ago',
-        category: '3',
-        description: 'These descriptions will probably be a lot longer or not...'
-    },
-    {
-        title: 'yolo',
-        time: '5 minutes ago',
-        category: '2',
-        description: 'These descriptions will probably be a lot longer or not...'
-    },
-    {
-        title: 'yolo',
-        time: '5 minutes ago',
-        category: '2',
-        description: 'These descriptions will probably be a lot longer or not...'
-    },
-    {
-        title: 'hello',
-        time: '5 minutes ago',
-        category: '3',
-        description: 'These descriptions will probably be a lot longer or not...'
-    }
+    $scope.listings = [];
 
-    ];
+    // $scope.listings = [
+    //     {
+    //         title: "Macbook Pro 2020",
+    //         img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
+    //         description: "HDD:256GB SSD/ RAM:8GB/ Retina Display / And your mom.",
+    //         category: "3",
+    //         tags: ["Apple", "Laptop", "Macbook", "GitFukinRekt"],
+    //         contact: "Jason Chiu",
+    //         location: "UTC Portal",
+    //         likes: 50
+    //     },
+    //     {
+    //         title: "Macbook Pro 2014",
+    //         img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
+    //         description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
+    //         category: "3",
+    //         tags: ["Apple", "Laptop", "Macbook"],
+    //         contact: "Jason Chiu",
+    //         location: "UTC Portal",
+    //         likes: 5
+    //     },
+    //     {
+    //         title: 'hoho',
+    //         time: '2 minutes ago',
+    //         category: '2',
+    //         description: "I'm giving away nothing. Just posting for fun :P"
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         category: '1',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         category: '1',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         category: '1',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         category: '3',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         category: '3',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         category: '2',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'yolo',
+    //         time: '5 minutes ago',
+    //         category: '2',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     },
+    //     {
+    //         title: 'hello',
+    //         time: '5 minutes ago',
+    //         category: '3',
+    //         description: 'These descriptions will probably be a lot longer or not...'
+    //     }
+
+    // ];
 
     $scope.createListing = function () {
         // console.log($scope.item);
@@ -146,15 +148,18 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
     };
 
 
-    $scope.sendConfirmationSMS = function(){
-        var confirmMSG = "Thank you, " + $scope.currUser.name + " for using Free for Everyone! Your item has been publically listed."
+    $scope.getAllObjects = function () {
+        
+    }
+
+    $scope.sendConfirmationSMS = function(content){
         var data = JSON.stringify({
             "call": {
                 // "no": "14087998066",
                 "no": $scope.currUser.telephone,
                 "caller_id_no": "19492366013"
             },
-            "message": confirmMSG
+            "message": content
         });
 
         var config = {
@@ -189,22 +194,25 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             if(res){
                 console.log("Sending request to create item");
             // Test SMS functionality
-            $scope.sendConfirmationSMS();
+            $scope.currUser      = userFactory.getUser();
+            var confirmMSG = "Thank you, " + $scope.currUser.name + " for using Free for Everyone! Your item has been publically listed."
+            // $scope.sendConfirmationSMS(confirmMSG);
             $.ajax({
                 url: 'http://localhost:1337/items/create',
-                data: {
-                    name: "Test Data",
-                    description: "asdfasdf",
-                    location: "Stridddddng",
-                    category: "Strinffffg",
+                data: { // TODO: Replace with actual fucking data
+                    name: $scope.item.title,
+                    description: $scope.item.description,
+                    location: $scope.item.location,
+                    category: $scope.item.category,
                     is_taken: false,
                 },
                 crossDomain: true,
                 method: 'POST',
                 xhrFields: {
                  withCredentials: true
-             }
-             // success: $scope.sendConfirmationSMS(); 
+             },
+            // success: $scope.sendConfirmationSMS(confirmMSG)
+            success: $scope.listings.push($scope.item)
          }
          );
 
@@ -224,5 +232,39 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
         }
     });
 };
+
+    // TODO: $scope.selected_item.title needs to be updated to the one that is being clicked on
+    $scope.lockThisItem = function(){
+        console.log("An item has been locked!");
+
+    }
+
+    $scope.submitInterest = function(){
+        $scope.currUser      = userFactory.getUser();
+        console.log("This item was indicated ", $scope.selected_item.title);
+        console.log("Submitting interest for this user: ", $scope.currUser.email);
+        
+        // Send a sms message indicating that you are now subscribed to this item.
+
+        var interestMSG = "Hello," + $scope.currUser.name + " for using Free for Everyone! You have been subscribed to ___ "
+                // Send a post request to this route to be handled. 
+            $.ajax({
+                url: 'http://localhost:1337/items/like/5651899fdc35e21902f6564a',
+                data: {
+                    name: $scope.selected_item.title,
+                    description: "This is a test interest",
+                    location: "This isa test loc",
+                },
+                crossDomain: true,
+                method: 'GET',
+                xhrFields: {
+                 withCredentials: true
+             },
+             success: $scope.lockThisItem()
+            // success: $scope.sendConfirmationSMS(interestMSG)
+         });
+
+    }
+
 
 }]);

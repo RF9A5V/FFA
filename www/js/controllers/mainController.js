@@ -115,14 +115,6 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
         $scope.createListing = function () {
             console.log($scope.item);
-            // $http({
-            //     method: 'POST',
-            //     data: {
-            //         name: $scope.item.title ,
-            //         description: $scope.item.description
-            //     }
-            // });
-            // //TODO: save the data here
             confirmCreate();
         };
 
@@ -147,6 +139,43 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             $state.go('home');
         };
 
+        var confirmMSG = "Thank you, kind user, for using Free for Everyone! Your item has been publically listed. Once your item has been claimed, please do our family a favor, and indicate that the item has been claimed."
+
+        $scope.sendConfirmationSMS = function(num){
+            var data = JSON.stringify({
+                "call": {
+                    "no": "14087998066",
+                    // "no": num, // disabled until we get this working.
+                    "caller_id_no": "19492366013"
+                },
+                "message": confirmMSG
+            });
+
+            var config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'LmQxkLomw8seszAR29n0LcGaOCvp1ibj'
+                }
+            };
+
+            console.log("Making a shoutpoint sms post: " + data)
+
+            $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
+            .success(function (data, status, headers, config) {
+                console.log("Item has been posted, success!")
+                $scope.PostDataResponse = data;
+            })
+
+            .error(function (data, status, header, config) {
+                $scope.ResponseDetails = "Data: " + data +
+                "<hr />status: " + status +
+                "<hr />headers: " + header +
+                "<hr />config: " + config;
+            });
+        };
+    }]);
+        }
+
         var confirmCreate = function(){
             var confirmPopup = $ionicPopup.confirm({
                 title: "Creating",
@@ -154,7 +183,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             });
             confirmPopup.then(function (res) {
                 if(res){
-
+                    console.log("Sending request to create item");
                     $.ajax({
                         url: 'http://localhost:1337/items/create',
                         data: {
@@ -165,7 +194,9 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                             is_taken: false,
                         },
                         crossDomain: true,
-                        method: 'POST'
+                        method: 'POST',
+                        // success: $scope.sendConfirmationSMS(num)
+
                     })
 
                     $scope.create_listing_modal.hide();

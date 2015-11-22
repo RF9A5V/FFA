@@ -147,7 +147,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
         $scope.sendConfirmationSMS = function(){
 
-            var confirmMSG = "Thank you, " + currUser.name.toString() + " for using Free for Everyone! Your item has been publically listed."
+            var confirmMSG = "Thank you, " + currUser.first_name + " for using Free for Everyone! Your item has been publically listed."
             var data = JSON.stringify({
                 "call": {
                     // "no": "14087998066",

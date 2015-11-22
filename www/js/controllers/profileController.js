@@ -28,76 +28,34 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
 
     $scope.listings = [];
 
-    $scope.getMyObjects = function () {
-            currUser = userFactory.getUser();
-            console.log($scope.currUser);
+      $scope.getAllObjects = function () {
+        $.ajax({
+          url: 'http://localhost:1337/items/my_listing/' + $scope.currUser._id,
+          crossDomain: true,
+          method: 'GET',
+          xhrFields: {
+            withCredentials: true
+          },
+          success: function (res) {
+            $scope.listings = res.reverse();
+          }
+          // success: $scope.sendConfirmationSMS(interestMSG)
+        });
+      };
 
-          $.ajax({
-                url: 'http://localhost:1337/items',
-                crossDomain: true,
-                method: 'GET',
-                xhrFields: {
-                 withCredentials: true
-             },
-             success: function(res){
-                console.log(res);
-                $scope.listings = res;
-             }
-            // success: $scope.sendConfirmationSMS(interestMSG)
-         });
-    }
+      $scope.timeAgo = function(date) {
+        return moment(date).startOf('seconds').fromNow();
+      };
 
+      $scope.doRefresh = function () {
+        $scope.getAllObjects();
+        $scope.$broadcast('scroll.refreshComplete');
+        $scope.$apply();
+      };
 
-    $scope.getMyObjects();
+      //$scope.doRefresh();
+      $scope.getAllObjects();
 
-    // $scope.listings = [
-    //     {
-    //         title: 'lol',
-    //         category: '2',
-    //         time: '6 seconds ago',
-    //         description: 'Air that is easily breathable',
-    //         tags:'test',
-    //         contact: 'Jason Chiu',
-    //         location: 'esports arena'
-
-    //     },
-    //     {
-    //         title: 'pop',
-    //         time: '46 seconds ago',
-    //         description: 'A free white box in wonderful condition!'
-    //     },
-    //     {
-    //         title: 'hoho',
-    //         time: '2 minutes ago',
-    //         description: "I'm giving away nothing. Just posting for fun :P"
-    //     },
-    //     {
-    //         title: 'yolo',
-    //         time: '5 minutes ago',
-    //         description: 'These descriptions will probably be a lot longer or not...'
-    //     },
-    //     {
-    //         title: 'yolo',
-    //         time: '5 minutes ago',
-    //         description: 'These descriptions will probably be a lot longer or not...'
-    //     },
-    //     {
-    //         title: 'yolo',
-    //         time: '5 minutes ago',
-    //         description: 'These descriptions will probably be a lot longer or not...'
-    //     },
-    //     {
-    //         title: 'yolo',
-    //         time: '5 minutes ago',
-    //         description: 'These descriptions will probably be a lot longer or not...'
-    //     },
-    //     {
-    //         title: 'yolo',
-    //         time: '5 minutes ago',
-    //         description: 'These descriptions will probably be a lot longer or not...'
-    //     }
-
-    // ];
     $scope.logOut = function (){
         $.ajax({
             url: "http://localhost:1337/login/destroy",
@@ -132,15 +90,6 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     $scope.addTag = function (tag){
         console.log(tag);
         $scope.wishlist.push({title:"#"+tag});
-    };
-
-    $scope.shouldShowDelete = false;
-    $scope.shouldShowReorder = false;
-    $scope.listCanSwipe = true;
-    $scope.noMoreItemsAvailable = false;
-
-    $scope.loadMore = function () {
-        $scope.items.push({id: $scope.items.length});
     };
 
     $scope.backToHome = function () {
@@ -181,10 +130,6 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     //$scope.formatDate = function(date) {
     //  return moment(date).format('MMMM Do YYYY');
     //};
-
-    $scope.getListings = function () {
-
-    };
 
     $scope.delete_wish = function (post) {
         console.log('delete wish');

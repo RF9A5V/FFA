@@ -99,12 +99,12 @@ ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
             // use $.param jQuery function to serialize data from JSON
             var data = JSON.stringify({
                 "call": {
-                    "no": "14087998066",
+                    // "no": "14083553211", // One of our test numbers
                     // "no": "17149445640",
+                    "no": "14087998066",
                     "caller_id_no": "19492366013"
                 },
-                "message": "Hello! This is a very happy object!"
-
+                "message": "Hello Jason! This is a very happy message from...shoutpoint!"
             });
 
             var config = {

@@ -17,7 +17,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             title: "Macbook Pro 2014",
             img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
             description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
-            category: "Electronic",
+            category: "3",
             tags: ["Apple", "Laptop", "Macbook"],
             contact: "Jason Chiu",
             location: "UTC Portal",
@@ -37,58 +37,77 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
         $scope.listings = [
             {
-                title: 'lol',
-                time: '6 seconds ago',
-                description: 'Air that is easily breathable'
+                title: "Macbook Pro 2014",
+                img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
+                description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
+                category: "3",
+                tags: ["Apple", "Laptop", "Macbook"],
+                contact: "Jason Chiu",
+                location: "UTC Portal",
+                likes: 5
             },
             {
-                title: 'pop',
-                time: '46 seconds ago',
-                description: 'A free white box in wonderful condition!'
+                title: "Macbook Pro 2014",
+                img: "http://images.apple.com/macbook-air/images/overview_wireless_hero_enhanced.png",
+                description: "HDD:256GB SSD/ RAM:8GB/ Retina Display",
+                category: "3",
+                tags: ["Apple", "Laptop", "Macbook"],
+                contact: "Jason Chiu",
+                location: "UTC Portal",
+                likes: 5
             },
             {
                 title: 'hoho',
                 time: '2 minutes ago',
+                category: '2',
                 description: "I'm giving away nothing. Just posting for fun :P"
             },
             {
                 title: 'yolo',
                 time: '5 minutes ago',
+                category: '1',
                 description: 'These descriptions will probably be a lot longer or not...'
             },
             {
                 title: 'yolo',
                 time: '5 minutes ago',
+                category: '1',
                 description: 'These descriptions will probably be a lot longer or not...'
             },
             {
                 title: 'yolo',
                 time: '5 minutes ago',
+                category: '1',
                 description: 'These descriptions will probably be a lot longer or not...'
             },
             {
                 title: 'yolo',
                 time: '5 minutes ago',
+                category: '3',
                 description: 'These descriptions will probably be a lot longer or not...'
             },
             {
                 title: 'yolo',
                 time: '5 minutes ago',
+                category: '3',
                 description: 'These descriptions will probably be a lot longer or not...'
             },
             {
                 title: 'yolo',
                 time: '5 minutes ago',
+                category: '2',
                 description: 'These descriptions will probably be a lot longer or not...'
             },
             {
                 title: 'yolo',
                 time: '5 minutes ago',
+                category: '2',
                 description: 'These descriptions will probably be a lot longer or not...'
             },
             {
                 title: 'hello',
                 time: '5 minutes ago',
+                category: '3',
                 description: 'These descriptions will probably be a lot longer or not...'
             }
 

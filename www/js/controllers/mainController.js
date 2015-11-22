@@ -5,6 +5,20 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     //Retrieves current user
     var currUser = {};
 
+    var reset_item_fields = function () {
+      $scope.item = {
+        title: "",
+        img: "",
+        description: "",
+        category: "",
+        tags: "",
+        contact: "",
+        location: "",
+        likes: ""
+      };
+    };
+    reset_item_fields();
+
     $scope.getAllObjects = function () {
       $.ajax({
         url: 'http://localhost:1337/items',
@@ -30,6 +44,8 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
       $scope.$apply();
     };
 
+    //$scope.doRefresh();
+    $scope.getAllObjects();
     $scope.createListing = function () {
       // console.log($scope.item);
       // $scope.currUser      = userFactory.getUser();
@@ -103,16 +119,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
           );
 
           $scope.create_listing_modal.hide();
-          $scope.item = {
-            title: "",
-            img: "",
-            description: "",
-            category: "",
-            tags: "",
-            contact: "",
-            location: "",
-            likes: ""
-          };
+          reset_item_fields();
         } else {
           console.log("no action taken");
         }
@@ -167,7 +174,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
     $scope.createListing = function () {
       // console.log($scope.item);
       $scope.currUser = userFactory.getUser();
-      console.log($scope.currUser)
+      console.log($scope.currUser);
       console.log("User phone number: ", $scope.currUser.telephone);
       confirmCreate();
     };

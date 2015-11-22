@@ -149,8 +149,25 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
 
     $scope.getAllObjects = function () {
+
+          $.ajax({
+                url: 'http://localhost:1337/items',
+                crossDomain: true,
+                method: 'GET',
+                xhrFields: {
+                 withCredentials: true
+             },
+             success: function(res){
+                console.log(res);
+             }
+            // success: $scope.sendConfirmationSMS(interestMSG)
+         });
         
+
+
     }
+
+    console.log($scope.getAllObjects()); 
 
     $scope.sendConfirmationSMS = function(content){
         var data = JSON.stringify({
@@ -204,7 +221,8 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                     description: $scope.item.description,
                     location: $scope.item.location,
                     category: $scope.item.category,
-                    is_taken: false,
+                    tags: $scope.item.split("#"),
+                    is_taken: false
                 },
                 crossDomain: true,
                 method: 'POST',

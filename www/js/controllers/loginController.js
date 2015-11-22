@@ -1,55 +1,72 @@
 ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
-  function ($scope, $state, $http, userFactory) {
-    $scope.user = {
-      name: '',
-      email: '',
-      password: '',
-      telephone: ''
-    };
+    function ($scope, $state, $http, userFactory) {
+        $scope.user = {
+            name: '',
+            email: '',
+            password: '',
+            telephone: ''
+        };
 
-     var saveAfterSuccessLogin = function(res){
-          console.log("Response after login: ", res);
-          // Sets the user values after success login
-          userFactory.setUser(res);
-          $state.go("home");
-    };
+        var saveAfterSuccessLogin = function (res) {
+            console.log("Response after login: ", res);
+            // Sets the user values after success login
+            userFactory.setUser(res);
+            $state.go("home");
+        };
 
-    $scope.backToHome = function () {
-      $state.go("home");
-    };
+        $scope.backToHome = function () {
+            $state.go("home");
+        };
 
-    $scope.backToStart = function () {
-      $state.go("start");
-    };
+        $scope.backToStart = function () {
+            $state.go("start");
+        };
 
-    $scope.createUser = function () {
-      $state.go("create_user");
-    };
+        $scope.createUser = function () {
+            $state.go("create_user");
+        };
 
-    $scope.logIn = function () {
-      $state.go("login");
-    };
+        $scope.logIn = function () {
+            $state.go("login");
+        };
 
 
-    $scope.newUser = function () {
-      console.log($scope.user.name);
+        $scope.newUser = function () {
+            console.log($scope.user.name);
 
-      $.ajax({
-        url: 'http://localhost:1337/users/create',
-        data: {
-          name: $scope.user.name,
-          email: $scope.user.email,
-          password: $scope.user.password,
-          telephone: $scope.user.telephone
-        },
-        crossDomain: true,
-        method: 'POST',
-        xhrFields: {
-           withCredentials: true
-        }
-      })
+            $.ajax({
+                url: 'http://localhost:1337/users/create',
+                data: {
+                    name: $scope.user.name,
+                    email: $scope.user.email,
+                    password: $scope.user.password,
+                    telephone: $scope.user.telephone
+                },
+                crossDomain: true,
+                method: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                }
+            });
+            $.ajax({
+                url: 'http://localhost:1337/login',
+                data: {
+                    email: $scope.user.email,
+                    password: $scope.user.password,
+                },
+                crossDomain: true,
+                method: 'POST',
+                success: function (res) {
+                    console.log("Resp after login", res);
+                    saveAfterSuccessLogin(res);
+                    $state.go("home");
+                },
+                xhrFields: {
+                    withCredentials: true
+                }
+            });
 
-    };
+        };
 
         $scope.submit_login = function () {
             //do log-in ajax call here
@@ -57,24 +74,27 @@ ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
             console.log("User:" + $scope.user.email);
 
             $.ajax({
-               url: 'http://localhost:1337/login',
-               data: {
-                   email: $scope.user.email,
-                   password: $scope.user.password,
-               },
-               crossDomain: true,
-               method: 'POST',
-               success: function(res){
-                console.log("Resp after login", res);
-                saveAfterSuccessLogin(res);
-               }
+                url: 'http://localhost:1337/login',
+                data: {
+                    email: $scope.user.email,
+                    password: $scope.user.password,
+                },
+                crossDomain: true,
+                method: 'POST',
+                success: function (res) {
+                    console.log("Resp after login", res);
+                    saveAfterSuccessLogin(res);
+                },
+                xhrFields: {
+                    withCredentials: true
+                }
             })
 
         };
 
 
-/* Example SMS Test */
-$scope.smsTest = function () {
+        /* Example SMS Test */
+        $scope.smsTest = function () {
 
             // use $.param jQuery function to serialize data from JSON
             var data = JSON.stringify({
@@ -95,16 +115,16 @@ $scope.smsTest = function () {
             };
 
             $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
-            .success(function (data, status, headers, config) {
-                console.log("Success!")
-                $scope.PostDataResponse = data;
-            })
+                .success(function (data, status, headers, config) {
+                    console.log("Success!")
+                    $scope.PostDataResponse = data;
+                })
 
-            .error(function (data, status, header, config) {
-                $scope.ResponseDetails = "Data: " + data +
-                "<hr />status: " + status +
-                "<hr />headers: " + header +
-                "<hr />config: " + config;
-            });
+                .error(function (data, status, header, config) {
+                    $scope.ResponseDetails = "Data: " + data +
+                        "<hr />status: " + status +
+                        "<hr />headers: " + header +
+                        "<hr />config: " + config;
+                });
         };
     }]);

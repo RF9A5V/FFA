@@ -228,7 +228,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             var theObj = post.title;
 
             // Spoof.
-            intUsers.push("14087998066")
+            // intUsers.push("14087998066")
             intUsers.push("17146608285")
             intUsers.push("17149445640")
             intUsers.push("14083553211")

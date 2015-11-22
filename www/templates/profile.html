@@ -74,7 +74,7 @@
                 <label class="item-input-wrapper">
                   <input type="text" placeholder="Enter a tag." ng-model="newWish">
                 </label>
-                <button class="button button-dark button-small" ng-click="">
+                <button class="button button-dark button-small" ng-click="addTag(newWish)">
                   Submit
                 </button>
               </div>
@@ -94,10 +94,8 @@
                     <ion-item ng-repeat="wish in wishlist">
                         <!--<div class="item item-body">-->
                         <!--<button><i class="icon ion-close"></i></button>-->
-                        <h4>Category: {{wish.time}}</h4>
 
                         <h2><b>{{wish.title}}</b></h2>
-
 
                         <ion-option-button class="button button-assertive" ng-click="delete_wish(wish)">
                             Delete

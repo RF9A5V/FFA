@@ -25,7 +25,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         $scope.showListings = false;
         $scope.showWishlist = true;
     };
-    
+
     $scope.listings = [];
 
     $scope.getMyObjects = function () {
@@ -155,7 +155,19 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         confirmPopup.then(function (res) {
             // TODO: delete the post
             if (res) {
-                $scope.listings.splice($scope.listings.indexOf(post), 1);
+              //$.ajax({
+              //  url: 'http://localhost:1337/items/' + post._id,
+              //  data: {
+              //    id: post._id
+              //  },
+              //  crossDomain: true,
+              //  method: 'DELETE',
+              //  xhrFields: {
+              //    withCredentials: true
+              //  },
+              //  success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
+              //})
+              success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1);
             }
         });
 
@@ -183,10 +195,23 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         confirmPopup.then(function (res) {
             // TODO: delete the post
             if (res) {
-                $scope.wishlist.splice($scope.wishlist.indexOf(post), 1);
+                //$.ajax({
+                //  url: 'http://localhost:1337/items/' + post._id,
+                //  data: {
+                //    id: post._id
+                //  },
+                //  crossDomain: true,
+                //  method: 'DELETE',
+                //  xhrFields: {
+                //    withCredentials: true
+                //  },
+                //  success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
+                //
+                //})
+                $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
             }
-        });
-    };
+        })
+    }
 
     $scope.doRefresh = function () {
         //TODO: get new favorite posts and shares

@@ -1,8 +1,8 @@
 /**
  * Created by Dooshkukakoo on 11/21/2015.
  */
- ffe.controller('loginController', ['$scope', '$state', '$http',
-    function ($scope, $state, $http) {
+ ffe.controller('loginController', ['$scope', '$state', '$http', 'userFactory',
+    function ($scope, $state, $http, userFactory) {
         $scope.user ={
             name: '',
             email:'',
@@ -11,8 +11,17 @@
         };
 
         $scope.backToHome = function () {
+
             $state.go("home");
         };
+
+        var saveAfterSuccessLogin = function(res){
+          console.log("Response after login: ", res);
+          // Sets the user values after success login
+          userFactory.setUser(res);
+          $state.go("home");
+
+        }
 
         $scope.backToStart = function () {
             $state.go("start");
@@ -39,8 +48,11 @@
                },
                crossDomain: true,
                method: 'POST',
-               success: $scope.backToHome()
-                          })
+               success: function(res){
+                console.log("Resp after login", res);
+                saveAfterSuccessLogin(res);
+               }
+            })
 
         };
 

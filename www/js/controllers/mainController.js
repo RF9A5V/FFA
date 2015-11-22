@@ -1,5 +1,8 @@
-ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModal',
-    function ($scope, $state, $ionicPopup, $ionicModal) {
+ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModal', '$http', 'userFactory',
+    function ($scope, $state, $ionicPopup, $ionicModal, $http, userFactory) {
+
+        //Retrieves current user
+        var currUser = userFactory.getUser();
 
         $scope.showListings = true;
 
@@ -114,7 +117,9 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
         ];
 
         $scope.createListing = function () {
-            console.log($scope.item);
+            // console.log($scope.item);
+
+            console.log("User phone number: ", currUser.telephone);
             confirmCreate();
         };
 
@@ -139,13 +144,14 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
             $state.go('home');
         };
 
-        var confirmMSG = "Thank you, kind user, for using Free for Everyone! Your item has been publically listed. Once your item has been claimed, please do our family a favor, and indicate that the item has been claimed."
 
-        $scope.sendConfirmationSMS = function(num){
+        $scope.sendConfirmationSMS = function(){
+
+            var confirmMSG = "Thank you, " + currUser.name.toString() + " for using Free for Everyone! Your item has been publically listed."
             var data = JSON.stringify({
                 "call": {
-                    "no": "14087998066",
-                    // "no": num, // disabled until we get this working.
+                    // "no": "14087998066",
+                    "no": currUser.telephone,
                     "caller_id_no": "19492366013"
                 },
                 "message": confirmMSG
@@ -173,47 +179,46 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                 "<hr />config: " + config;
             });
         };
-    }]);
-        }
 
-        var confirmCreate = function(){
-            var confirmPopup = $ionicPopup.confirm({
-                title: "Creating",
-                template:"Are you sure you want to create this item?"
-            });
-            confirmPopup.then(function (res) {
-                if(res){
-                    console.log("Sending request to create item");
-                    $.ajax({
-                        url: 'http://localhost:1337/items/create',
-                        data: {
-                            name: "Test Data",
-                            description: "asdfasdf",
-                            location: "Stridddddng",
-                            category: "Strinffffg",
-                            is_taken: false,
-                        },
-                        crossDomain: true,
-                        method: 'POST',
-                        // success: $scope.sendConfirmationSMS(num)
+    var confirmCreate = function(){
+        var confirmPopup = $ionicPopup.confirm({
+            title: "Creating",
+            template:"Are you sure you want to create this item?"
+        });
+        confirmPopup.then(function (res) {
+            if(res){
+                console.log("Sending request to create item");
+                // Test SMS functionality
+                // $scope.sendConfirmationSMS();
+                $.ajax({
+                    url: 'http://localhost:1337/items/create',
+                    data: {
+                        name: "Test Data",
+                        description: "asdfasdf",
+                        location: "Stridddddng",
+                        category: "Strinffffg",
+                        is_taken: false,
+                    },
+                    crossDomain: true,
+                    method: 'POST',
+                    success: $scope.sendConfirmationSMS
+                });
 
-                    })
-
-                    $scope.create_listing_modal.hide();
-                    $scope.item = {
-                        title: "",
-                        img: "",
-                        description: "",
-                        category: "",
-                        tags: [],
-                        contact: "",
-                        location: "",
-                        likes: ""
-                    };
-                } else {
-                    console.log("no action taken");
-                }
-            });
-};
+                $scope.create_listing_modal.hide();
+                $scope.item = {
+                    title: "",
+                    img: "",
+                    description: "",
+                    category: "",
+                    tags: [],
+                    contact: "",
+                    location: "",
+                    likes: ""
+                };
+            } else {
+                console.log("no action taken");
+            }
+        });
+    };
 
 }]);

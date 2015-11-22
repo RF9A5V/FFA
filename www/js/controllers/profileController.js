@@ -170,7 +170,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
     });
     // Execute action on remove modal
     $scope.$on('modal.removed', function () {
-        // Execute action
+            // Execute action
     });
 
     $ionicModal.fromTemplateUrl('templates/modals/modify_listing.html', {

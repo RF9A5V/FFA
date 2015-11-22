@@ -1,44 +1,53 @@
 ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$ionicConfigProvider',
-  function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider) {
+    function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $ionicConfigProvider) {
 
-    var home = {
-        url: '/home',
-        //abstract: true,
-        templateUrl: "templates/main.html",
-        controller: "mainController"
-    };
+        var home = {
+            url: '/home',
+            //abstract: true,
+            templateUrl: "templates/main.html",
+            controller: "mainController"
+        };
 
-    var profile = {
-        url: '/profile',
-        templateUrl: "templates/profile.html",
-        controller: "profileController"
-    };
+        var profile = {
+            url: '/profile',
+            templateUrl: "templates/profile.html",
+            controller: "profileController"
+        };
 
-    var login = {
-        url: '/login',
-        templateUrl: "templates/login.html",
-        controller: "loginController"
-    };
+        var login = {
+            url: '/login',
+            templateUrl: "templates/login.html",
+            controller: "loginController"
+        };
 
-    //var tab = {
-    //    url: "/tab",
-    //    abstract: true,
-    //    templateUrl: "templates/tabs.html"
-    //};
+         var create_user = {
+            url: '/create_user',
+            templateUrl: "templates/create_user.html",
+            controller: "loginController"
+        };
 
-    var testlisting = {
-        url: '/listing',
-        templateUrl: 'templates/modals/create_listing.html',
-        controller: 'listingController'
-    };
+        var verification = {
+            url: '/verification',
+            templateUrl: "templates/verification.html",
+            controller: "loginController"
+        };
 
-    $stateProvider.state('login', login);
-    $stateProvider.state('home', home);
-    $stateProvider.state('profile', profile);
-    $stateProvider.state('testlisting', testlisting);
+        //var testlisting = {
+        //    url: '/listing',
+        //    templateUrl: 'templates/modals/create_listing.html',
+        //    controller: 'listingController'
+        //};
 
-    $urlRouterProvider.otherwise('/home');
+        $stateProvider.state('login', login);
+        $stateProvider.state('home', home);
+        $stateProvider.state('profile', profile);
+        $stateProvider.state('create_user', create_user);
+        $stateProvider.state('verification', verification);
 
-    //$ionicConfigProvider.tabs.position('bottom');
-    $ionicConfigProvider.navBar.alignTitle('center');
-}]);
+
+
+        $urlRouterProvider.otherwise('/home');
+
+        //$ionicConfigProvider.tabs.position('bottom');
+        $ionicConfigProvider.navBar.alignTitle('center');
+    }]);

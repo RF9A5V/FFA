@@ -142,11 +142,12 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
       console.log(interestMSG);
       // Send a post request to this route to be handled.
       var tempID =  $scope.selected_item._id;
+      var teleNum = $scope.currUser.telephone;
       $.ajax({
         url: 'http://ffe-api-reboot.mybluemix.net'+ tempID + '/like',
         data: {
-          pID: $scope.currUser.telephone,
-          id: $scope.selected_item.uid,
+          tel: teleNum,
+          id: tempID
         },
         crossDomain: true,
         method: 'POST',

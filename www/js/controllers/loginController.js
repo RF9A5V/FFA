@@ -3,7 +3,6 @@
  */
 ffe.controller('loginController', ['$scope', '$state', '$http',
     function ($scope, $state, $http) {
-
         $scope.user ={
             name: '',
             email:'',
@@ -15,8 +14,21 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
             $state.go("home");
         };
 
+        $scope.backToStart = function () {
+            $state.go("start");
+        };
+
         $scope.createUser = function () {
             $state.go("create_user");
+        };
+
+        $scope.logIn = function () {
+            $state.go("login");
+        };
+
+        $scope.submit_login = function () {
+            //do log-in ajax call here
+            console.log("Trying to log in", $scope.user);
         };
 
         $scope.newUser = function (){
@@ -82,6 +94,4 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
                         "<hr />config: " + config;
                 });
         };
-
-
     }]);

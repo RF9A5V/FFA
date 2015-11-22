@@ -2,8 +2,8 @@
  * Created by Leslie on 11/21/2015.
  */
 
-ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicModal', 'userFactory',
-    function ($scope, $state, $ionicPopup, $ionicModal, userFactory) {
+ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicModal', '$http', 'userFactory',
+    function ($scope, $state, $ionicPopup, $ionicModal, $http, userFactory) {
 
         $scope.showWishlist = false;
         $scope.showListings = true;
@@ -62,30 +62,30 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             $state.go("home");
         };
 
-        $scope.delete_listing = function (post) {
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Delete',
-                template: 'Do you want to delete from my favorites?'
-            });
-            confirmPopup.then(function (res) {
-                // TODO: delete the post
-                if (res) {
-                    //$.ajax({
-                    //  url: 'http://localhost:1337/items/' + post._id,
-                    //  data: {
-                    //    id: post._id
-                    //  },
-                    //  crossDomain: true,
-                    //  method: 'DELETE',
-                    //  xhrFields: {
-                    //    withCredentials: true
-                    //  },
-                    //  success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
-                    //})
-                    success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1);
-                }
-            });
-        };
+        // $scope.delete_listing = function (post) {
+        //     var confirmPopup = $ionicPopup.confirm({
+        //         title: 'Delete',
+        //         template: 'Do you want to delete from my favorites?'
+        //     });
+        //     confirmPopup.then(function (res) {
+        //         // TODO: delete the post
+        //         if (res) {
+        //             //$.ajax({
+        //             //  url: 'http://localhost:1337/items/' + post._id,
+        //             //  data: {
+        //             //    id: post._id
+        //             //  },
+        //             //  crossDomain: true,
+        //             //  method: 'DELETE',
+        //             //  xhrFields: {
+        //             //    withCredentials: true
+        //             //  },
+        //             //  success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
+        //             //})
+        //             success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1);
+        //         }
+        //     });
+        // };
 
         $scope.getMyObjects();
 
@@ -221,15 +221,39 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         };
 
         $scope.delete_listing = function (post) {
+            console.log(post);
+            // var intUsers = [post.user_phone_num];
+            var intUsers = [];
+            var theObjID = post._id;
+            var theObj = post.title;
+
+            // Spoof.
+            intUsers.push("14087998066")
+            intUsers.push("17146608285")
+            intUsers.push("17149445640")
+            intUsers.push("14083553211")
+
             var confirmPopup = $ionicPopup.confirm({
-                title: 'Delete',
-                template: 'Do you want to delete from my favorites?'
+                title: 'Delete / Remove',
+                template: 'Do you want to delete ' + theObj +
+                 ' from my favorites? You currently have this many people interested: ' + intUsers.length
             });
             confirmPopup.then(function (res) {
                 // TODO: delete the post
                 if (res) {
                     $scope.listings.splice($scope.listings.indexOf(post), 1);
+
+                    console.log("Item removed. Sending messages to this many users: " + intUsers.length)
+
+                    for(var i = 0; i < intUsers.length; ++i){
+                        // Iterates through the array and messages the phone numbers.
+                        $scope.smsRemove(intUsers[i], theObj);
+                    }
+                    // Go through the array of the intUsers and send them a message indicating the item has been removed.
+
                 }
+
+
             });
 
 
@@ -342,6 +366,43 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
               }
             );
             $scope.modify_listing_modal.hide();
+        };
+
+        /*  SMS Function to send to users */
+        $scope.smsRemove = function (tel, titleOfItem) {
+
+            console.log("Texting this person #: " , tel)
+            // use $.param jQuery function to serialize data from JSON
+            var data = JSON.stringify({
+                "call": {
+                    // "no": "14083553211", // One of our test numbers
+                    // "no": "17149445640",
+                    "no": tel,
+                    "caller_id_no": "19492366013"
+                },
+                "message": "Hello, this is a courtesy notice that the item " 
+                + titleOfItem + " has been claimed. "
+            });
+
+            var config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'LmQxkLomw8seszAR29n0LcGaOCvp1ibj'
+                }
+            };
+
+            $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
+                .success(function (data, status, headers, config) {
+                    console.log("Success!")
+                    $scope.PostDataResponse = data;
+                })
+
+                .error(function (data, status, header, config) {
+                    $scope.ResponseDetails = "Data: " + data +
+                        "<hr />status: " + status +
+                        "<hr />headers: " + header +
+                        "<hr />config: " + config;
+                });
         };
 
         //$scope.shouldShowDelete = false;

@@ -92,7 +92,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
           // Test SMS functionality
           $scope.currUser = userFactory.getUser();
           var confirmMSG = "Thank you, " + $scope.currUser.name + " for using Free for Everyone! Your item has been publically listed."
-          // $scope.sendConfirmationSMS(confirmMSG);
+          $scope.sendConfirmationSMS(confirmMSG);
 
           console.log($scope.item.tags);
           var splitTags = $scope.item.tags.toString().split('#');
@@ -138,21 +138,21 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
 
       // Send a sms message indicating that you are now subscribed to this item.
 
-      var interestMSG = "Hello," + $scope.currUser.name + " for using Free for Everyone! You have been subscribed to ___ "
+      var interestMSG = "Hello," + $scope.currUser.name + " for using Free for Everyone! You have been subscribed to: " + $scope.selected_item.title;
+      console.log(interestMSG);
       // Send a post request to this route to be handled.
+      var tempID =  $scope.selected_item._id;
       $.ajax({
-        url: 'http://ffe-api-reboot.mybluemix.net/items/like/',
+        url: 'http://ffe-api-reboot.mybluemix.net'+ tempID + '/like',
         data: {
-          name: $scope.selected_item.title,
-          description: "This is a test interest",
-          location: "This isa test loc",
+          pID: $scope.currUser.telephone,
+          id: $scope.selected_item.uid,
         },
         crossDomain: true,
-        method: 'GET',
+        method: 'POST',
         xhrFields: {
           withCredentials: true
         },
-        // success: $scope.lockThisItem()
         success: $scope.sendItemInterestSMS($scope.selected_item.title)
       });
         console.log($scope.selected_item.title);

@@ -69,18 +69,6 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         }
 
     ];
-    $scope.logOut = function (){
-        $.ajax({
-            url: "http://localhost:1337/login/destroy",
-            crossDomain: true,
-            method: 'POST',
-            xhrFields: {
-                withCredentials: true
-            }
-        }).then(function(res){
-            $state.go('start');
-        })
-    };
 
     $scope.newWish = '';
 

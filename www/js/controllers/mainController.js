@@ -197,7 +197,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                     description: "asdfasdf",
                     location: "Stridddddng",
                     category: "Strinffffg",
-                    is_taken: false,
+                    is_taken: false
                 },
                 crossDomain: true,
                 method: 'POST',

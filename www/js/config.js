@@ -56,3 +56,36 @@ ffe.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         //$ionicConfigProvider.tabs.position('bottom');
         $ionicConfigProvider.navBar.alignTitle('center');
     }]);
+
+ffe.run(['$state', '$rootScope', function ($state, $rootScope) {
+    $rootScope.$on("$stateChangeStart", function (event, toState, current) {
+        //if there isn't a user logged in to Parse, and if the state they're going to is login pages, let them go to login.
+        $.ajax({
+            url: "http://localhost:1337/users/validate",
+            success: function(data, text, jq){
+                console.log("WTFFFFFFFFFF",data.uid);
+                if(data.uid == undefined){
+                    if (toState.name === 'login' || toState.name === 'create_user' || toState.name === 'start') {
+                    } else {
+                        event.preventDefault();
+                        $state.go('login');
+                        console.log("not logged in")
+                    }
+                }else {
+                    //if there is a user logged in, don't allow user to go to login pages. Redirect to home page.
+                    if (toState.name === 'login' || toState.name === 'create_user' || toState.name === 'start') {
+                        event.preventDefault();
+                        $state.go('home');
+                        console.log("logged in")
+                    }
+                }
+            },
+            crossDomain: true,
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            }
+        });
+
+    });
+}]);

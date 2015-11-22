@@ -20,10 +20,19 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             $scope.showWishlist = false;
         };
 
+<<<<<<< HEAD
         $scope.show_wishlist = function () {
             $scope.showListings = false;
             $scope.showWishlist = true;
         };
+=======
+    $scope.show_wishlist = function () {
+        $scope.showListings = false;
+        $scope.showWishlist = true;
+    };
+
+    $scope.listings = [];
+>>>>>>> 08da111e170126414107e6085f8516c702c37f7b
 
         $scope.listings = [];
 
@@ -44,6 +53,52 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
                 // success: $scope.sendConfirmationSMS(interestMSG)
             });
         }
+<<<<<<< HEAD
+=======
+    ];
+
+    $scope.addTag = function (tag){
+        console.log(tag);
+        $scope.wishlist.push({title:"#"+tag});
+    };
+
+    $scope.shouldShowDelete = false;
+    $scope.shouldShowReorder = false;
+    $scope.listCanSwipe = true;
+    $scope.noMoreItemsAvailable = false;
+
+    $scope.loadMore = function () {
+        $scope.items.push({id: $scope.items.length});
+    };
+
+    $scope.backToHome = function () {
+        $state.go("home");
+    };
+
+    $scope.delete_listing = function (post) {
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Delete',
+            template: 'Do you want to delete from my favorites?'
+        });
+        confirmPopup.then(function (res) {
+            // TODO: delete the post
+            if (res) {
+              //$.ajax({
+              //  url: 'http://localhost:1337/items/' + post._id,
+              //  data: {
+              //    id: post._id
+              //  },
+              //  crossDomain: true,
+              //  method: 'DELETE',
+              //  xhrFields: {
+              //    withCredentials: true
+              //  },
+              //  success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1)
+              //})
+              success: $scope.wishlist.splice($scope.wishlist.indexOf(post), 1);
+            }
+        });
+>>>>>>> 08da111e170126414107e6085f8516c702c37f7b
 
         $scope.getMyObjects();
 

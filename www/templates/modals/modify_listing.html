@@ -24,20 +24,20 @@
             <form class="item no-pad">
                 <label class="item item-input item-select">
                     &nbsp
-                    <select ng-model="selectedItem.category" ng-show="selectedItem.category== 1">
-                        <option value="1" selected>Furniture</option>
-                        <option value="2">Food</option>
-                        <option value="3">Electronic</option>
+                    <select ng-model="selectedItem.category" ng-show="selectedItem.category== Furniture">
+                      <option value="Food">Food</option>
+                      <option value="Furniture" selected>Furniture</option>
+                      <option value="Electronic">Electronic</option>
                     </select>
-                    <select ng-model="selectedItem.category" ng-show="selectedItem.category== 2">
-                        <option value="1">Furniture</option>
-                        <option value="2" selected>Food</option>
-                        <option value="3">Electronic</option>
+                    <select ng-model="selectedItem.category" ng-show="selectedItem.category== Food">
+                      <option value="Food" selected>Food</option>
+                      <option value="Furniture">Furniture</option>
+                      <option value="Electronic">Electronic</option>
                     </select>
-                    <select ng-model="selectedItem.category" ng-show="selectedItem.category== 3">
-                        <option value="1">Furniture</option>
-                        <option value="2">Food</option>
-                        <option value="3" selected>Electronic</option>
+                    <select ng-model="selectedItem.category" ng-show="selectedItem.category== Electronic">
+                      <option value="Food">Food</option>
+                      <option value="Furniture">Furniture</option>
+                      <option value="Electronic" selected>Electronic</option>
                     </select>
                 </label>
 

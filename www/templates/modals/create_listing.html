@@ -21,10 +21,10 @@
                 <label class="item item-input item-select">
                     &nbsp
                     <select ng-model="item.category">
-                        <option value="" ng-selected>Choose a Category</option>
-                        <option value="1">Food</option>
-                        <option value="2">Furniture</option>
-                        <option value="3">Electronics</option>
+                        <option value="None" ng-selected>Choose a Category</option>
+                        <option value="Food">Food</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Electronic">Electronic</option>
                     </select>
                 </label>
 
@@ -38,10 +38,6 @@
 
                 <label class="item item-input">
                     <input type="text" placeholder="Tags" ng-model="item.tags">
-                </label>
-
-                <label class="item item-input">
-                    <input type="text" placeholder="Contact Information" ng-model="item.contact">
                 </label>
 
                 <label class="item item-input">

@@ -165,7 +165,10 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
                             is_taken: false,
                         },
                         crossDomain: true,
-                        method: 'POST'
+                        method: 'POST',
+                        xhrFields: {
+                           withCredentials: true
+                        }
                     })
 
                     $scope.create_listing_modal.hide();

@@ -71,7 +71,10 @@ $.ajax({
        telephone: $scope.user.telephone
    },
    crossDomain: true,
-   method: 'POST'
+   method: 'POST',
+   xhrFields: {
+      withCredentials: true
+   }
 })
 
 };

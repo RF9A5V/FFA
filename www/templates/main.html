@@ -23,8 +23,10 @@
                             <ion-list class="list" can-swipe="true">
                                 <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings"
                                           ng-click="showDetail(listing)">
+                                    <img ng-if="listing.category == 'Food'"src="../img/food_thumbnail.jpg">
+                                    <img ng-if="listing.category == 'Furniture'"src="../img/furniture_thumbnail.jpg">
+                                    <img ng-if="listing.category == 'Electronic'"src="../img/electronics_thumbnail.jpg">
                                     <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
-
                                     <h2><b>{{listing.title}}</b></h2>
 
                                     <h3>{{listing.description | limitTo: 40}}
@@ -47,8 +49,9 @@
                             </ion-refresher>
 
                             <ion-list class="list" can-swipe="true">
-                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'1'}"
+                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'Food'}"
                                           ng-click="showDetail(listing)">
+                                    <img src="../img/food_thumbnail.jpg">
                                     <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
 
                                     <h2><b>{{listing.title}}</b></h2>
@@ -73,8 +76,9 @@
                             </ion-refresher>
 
                             <ion-list class="list" can-swipe="true">
-                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'2'}"
+                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'Furniture'}"
                                           ng-click="showDetail(listing)">
+                                    <img src="../img/furniture_thumbnail.jpg">
                                     <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
 
                                     <h2><b>{{listing.title}}</b></h2>
@@ -99,8 +103,9 @@
                             </ion-refresher>
 
                             <ion-list class="list" can-swipe="listCanSwipe">
-                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'3'}"
+                                <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="listing in listings | filter:{category:'Electronic'}"
                                           ng-click="showDetail(listing)">
+                                    <img src="../img/electronics_thumbnail.jpg">
                                     <h4>Posted: {{timeAgo(listing.updated_time)}}</h4>
 
                                     <h2><b>{{listing.title}}</b></h2>

@@ -39,6 +39,9 @@
                     <ion-item class="item-thumbnail-left" ng-repeat="listing in listings" ng-click="modifyItem(listing)">
                         <!--<div class="item item-body">-->
                         <!--<button class="button"><i class="icon ion-close"></i></button>-->
+                        <img ng-if="listing.category == 'Food'"src="../img/food_thumbnail.jpg">
+                        <img ng-if="listing.category == 'Furniture'"src="../img/furniture_thumbnail.jpg">
+                        <img ng-if="listing.category == 'Electronic'"src="../img/electronics_thumbnail.jpg">
                         <h4>Posted: {{listing.time}}</h4>
 
                         <h2><b>{{listing.title}}</b></h2>

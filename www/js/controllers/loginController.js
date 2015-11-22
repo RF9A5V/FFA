@@ -19,37 +19,21 @@ ffe.controller('loginController', ['$scope', '$state', '$http',
             $state.go("create_user");
         };
 
-        $scope.newUser = function (){
-            var data = $.param({
-                json: JSON.stringify({
-                   name: $scope.user.name ,
-                   email: $scope.user.email,
-                   password: $scope.user.password,
-                   telephone: $scope.user.telephone
-               })
-            });
+        $scope.newUser = function () {
 
-            $http.post('http://localhost:1337/users/create',data)
-                .success(function(data,status){
-                    $scope.PostDataResponse = data;
+            $.ajax({
+                url: 'http://localhost:1337/users/create',
+                data: {
+                    name: $scope.user.name,
+                    email: $scope.user.email,
+                    password: $scope.user.password,
+                    telephone: $scope.user.telephone
+                },
+                crossDomain: true,
+                method: 'POST'
             })
-                .error(function(res){
-                   console.log(res);
-                });
 
-        //$.ajax({
-        //    url: 'http://localhost:1337/users/create',
-        //    data: {
-        //        name: $scope.user.name,
-        //        email: $scope.user.email,
-        //        password: $scope.user.password,
-        //        telephone: $scope.user.telephone
-        //    },
-        //    crossDomain: true,
-        //    method: 'POST'
-        //})
-
-    };
+        };
 
         $scope.smsTest = function () {
             // use $.param jQuery function to serialize data from JSON

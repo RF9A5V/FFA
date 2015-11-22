@@ -138,22 +138,27 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
 
       // Send a sms message indicating that you are now subscribed to this item.
 
-      var interestMSG = "Hello," + $scope.currUser.name + " for using Free for Everyone! You have been subscribed to ___ "
+      var interestMSG = "Hello," + $scope.currUser.name + " for using Free for Everyone! You have been subscribed to: " + $scope.selected_item.title;
+      console.log(interestMSG);
       // Send a post request to this route to be handled.
+      var tempID =  $scope.selected_item._id;
       $.ajax({
-        url: 'http://localhost:1337/items/like/5651899fdc35e21902f6564a',
+        url: 'http://localhost:1337/items/'+ tempID + '/like',
         data: {
-          name: $scope.selected_item.title,
-          description: "This is a test interest",
-          location: "This isa test loc",
+          pID: $scope.currUser.telephone,
+          id: $scope.selected_item.uid,
         },
         crossDomain: true,
-        method: 'GET',
+        method: 'POST',
         xhrFields: {
           withCredentials: true
         },
-        // success: $scope.lockThisItem()
-        success: $scope.sendItemInterestSMS($scope.selected_item.title)
+        success: function(res){ 
+                 console.log(res);
+          $scope.lockThisItem();
+
+        }
+        // success: $scope.sendItemInterestSMS($scope.selected_item.title)
       });
         console.log($scope.selected_item.title);
 

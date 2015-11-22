@@ -25,7 +25,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
         $scope.showListings = false;
         $scope.showWishlist = true;
     };
-
+    
     $scope.listings = [];
 
     $scope.getMyObjects = function () {
@@ -110,6 +110,7 @@ ffe.controller('profileController', ['$scope', '$state', '$ionicPopup', '$ionicM
             $state.go('start');
         })
     };
+
 
     $scope.newWish = '';
 

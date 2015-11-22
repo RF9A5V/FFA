@@ -1,8 +1,10 @@
-ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModal', '$http', '$timeout', 'userFactory',
-    function ($scope, $state, $ionicPopup, $ionicModal, $http, $timeout, userFactory) {
 
-    //Retrieves current user
-    var currUser = {};
+ffe.controller('mainController', ['$scope', '$state', '$ionicPopup','$ionicSideMenuDelegate', '$ionicModal', '$http', 'userFactory',
+    function ($scope, $state, $ionicPopup, $ionicSideMenuDelegate,$ionicModal, $http, userFactory) {
+
+
+        //Retrieves current user
+        var currUser = {};
 
     $scope.selected_item = {
         title: "Macbook Pro 2014",
@@ -136,7 +138,6 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
         $state.go('home');
     };
 
-
     $scope.getAllObjects = function () {
 
           $.ajax({
@@ -156,52 +157,14 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
     }
 
+    console.log($scope.getAllObjects()); 
+
+
     $scope.doRefresh = function() {
         $scope.getAllObjects();
         $scope.$broadcast('scroll.refreshComplete');
         $scope.$apply();
     };
-
-    $timeout(function() {
-            console.log($scope.listings);
-        }, 500);
-
-    console.log($scope.getAllObjects()); 
-
-    $scope.sendConfirmationSMS = function(content){
-        var data = JSON.stringify({
-            "call": {
-                // "no": "14087998066",
-                "no": $scope.currUser.telephone,
-                "caller_id_no": "19492366013"
-            },
-            "message": content
-        });
-
-        var config = {
-            headers: {
-                'Content-Type': 'application/json',
-                'X-API-Key': 'LmQxkLomw8seszAR29n0LcGaOCvp1ibj'
-            }
-        }
-        
-        console.log("Making a shoutpoint sms post: " + data)
-
-        $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
-        .success(function (data, status, headers, config) {
-            console.log("Item has been posted, success!")
-            $scope.PostDataResponse = data;
-        })
-
-        .error(function (data, status, header, config) {
-            $scope.ResponseDetails = "Data: " + data +
-            "<hr />status: " + status +
-            "<hr />headers: " + header +
-            "<hr />config: " + config;
-        });
-    };
-
-
 
     var confirmCreate = function(){
         var confirmPopup = $ionicPopup.confirm({
@@ -289,5 +252,86 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicModa
 
     }
 
+        $scope.logOut = function (){
+            $.ajax({
+                url: "http://localhost:1337/login/destroy",
+                crossDomain: true,
+                method: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                }
+            }).then(function(res){
+                $state.go('start');
+            })
+        };
 
-}]);
+        $scope.createListing = function () {
+            // console.log($scope.item);
+            $scope.currUser = userFactory.getUser();
+            console.log($scope.currUser)
+            console.log("User phone number: ", $scope.currUser.telephone);
+            confirmCreate();
+        };
+
+        $ionicModal.fromTemplateUrl('templates/modals/create_listing.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.create_listing_modal = modal;
+        });
+
+        $ionicModal.fromTemplateUrl('templates/modals/listing_detail.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.listing_details_modal = modal;
+        });
+
+        $scope.goProfile = function () {
+            $state.go("profile");
+        };
+
+        $scope.goHome = function () {
+            console.log("ASDA");
+            $state.go('home');
+        };
+
+        $scope.toggleLeft= function(){
+            console.log('toggling');
+            $ionicSideMenuDelegate.toggleLeft();
+        };
+
+        $scope.sendConfirmationSMS = function () {
+            var confirmMSG = "Thank you, " + $scope.currUser.name + " for using Free for Everyone! Your item has been publically listed."
+            var data = JSON.stringify({
+                "call": {
+                    // "no": "14087998066",
+                    "no": $scope.currUser.telephone,
+                    "caller_id_no": "19492366013"
+                },
+                "message": confirmMSG
+            });
+
+            var config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'LmQxkLomw8seszAR29n0LcGaOCvp1ibj'
+                }
+            }
+
+            console.log("Making a shoutpoint sms post: " + data)
+
+            $http.post('https://api.shoutpoint.com/CORS/v0/Dials/SMS', data, config)
+                .success(function (data, status, headers, config) {
+                    console.log("Item has been posted, success!")
+                    $scope.PostDataResponse = data;
+                }).error(function (data, status, header, config) {
+                    $scope.ResponseDetails = "Data: " + data +
+                        "<hr />status: " + status +
+                        "<hr />headers: " + header +
+                        "<hr />config: " + config;
+                });
+            };
+        }]);
+
+        
+
+    

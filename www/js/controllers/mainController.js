@@ -101,7 +101,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
           $.ajax({
               url: 'http://localhost:1337/items/create',
               data: { // TODO: Replace with actual fucking data
-                name: $scope.item.title,
+                title: $scope.item.title,
                 description: $scope.item.description,
                 location: $scope.item.location,
                 category: $scope.item.category,
@@ -153,7 +153,7 @@ ffe.controller('mainController', ['$scope', '$state', '$ionicPopup', '$ionicSide
           withCredentials: true
         },
         // success: $scope.lockThisItem()
-        // success: $scope.sendItemInterestSMS($scope.selected_item.title)
+        success: $scope.sendItemInterestSMS($scope.selected_item.title)
       });
         console.log($scope.selected_item.title);
 
